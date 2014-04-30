@@ -173,9 +173,13 @@ public class Cliente extends java.applet.Applet implements ActionListener {
                             else{
                                 String alias = strComand[1].toString();
                                 short code = Short.parseShort(strComand[2].toString());
-                                Answer Response = ModuleRMI.termina(alias, code);
-                                int iError = Response.getError();
-                                int iServerError = Response.getServer_error();
+                                requestTerminaHolder request = new requestTerminaHolder();
+                                request.alias = alias;
+                                request.code = code;
+                                AnswerHolder response = new AnswerHolder();
+                                Interface.termina(request, response);
+                                int iError = response.error;
+                                int iServerError = Response.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -189,10 +193,13 @@ public class Cliente extends java.applet.Applet implements ActionListener {
                             if(strComand.length<2) System.err.println("Not enough arguments");
                             else{
                                 short code = Short.parseShort(strComand[1].toString());
-                                Answer Response = ModuleRMI.lista(code);
-                                int iError = Response.getError();
-                                int iServerError = Response.getServer_error();
-                                String sResponse = Response.getAnswer();
+                                requestListaHolder request = new requestListaHolder();
+                                request.code = code;
+                                AnswerHolder response = new AnswerHolder();
+                                Interface.lista(request, response);
+                                int iError = response.error;
+                                int iServerError = Response.server_error;
+                                String sResponse = Response.answer;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -215,76 +222,6 @@ public class Cliente extends java.applet.Applet implements ActionListener {
                     break;
                 }
             }
-
-
-
-
-
-            //
-            // Bucle principal del Cliente de Eco
-            //
-            System.out.println("Introduce mensaje o ’x’ para terminar:");
-            String enviado;
-            java.io.DataInputStream dataIn =
-                    new java.io.DataInputStream(System.in);
-            java.io.BufferedReader in = new java.io.BufferedReader(
-                    new java.io.InputStreamReader(dataIn));
-
-            org.omg.CORBA.StringHolder recibido1 =
-                    new org.omg.CORBA.StringHolder();
-            laStructHolder recibido2 = new laStructHolder();
-            laSeqHolder recibido3 = new laSeqHolder();
-            laStruct [] recibido4;
-            int cuenta = 0;
-
-            do {
-                System.out.print("Eco> ");
-
-                enviado = in.readLine();
-
-                if(enviado == null)
-                    break;
-
-                if(!enviado.equals("x")) {
-                    switch(cuenta) {
-                        case 0 :
-                            elEco.eco_1(enviado, recibido1);
-                            System.out.println("cadena:" + recibido1.value);
-                            break;
-
-                        case 1 :
-                            elEco.eco_2(enviado, recibido2);
-                            System.out.println(" corto:" + recibido2.value.corto);
-                            System.out.println(" largo:" + recibido2.value.largo);
-                            System.out.println("cadena:" + recibido2.value.cadena);
-                            break;
-
-                        case 2 :
-                            elEco.eco_3(enviado, recibido3);
-                            for (int i=0; i < recibido3.value.length; i++) {
-                                System.out.println(" corto:" +
-                                        recibido3.value[i].corto);
-                                System.out.println(" largo:" +
-                                        recibido3.value[i].largo);
-                                System.out.println("cadena:" +
-                                        recibido3.value[i].cadena);
-                            }
-                            break;
-
-                        case 3 :
-                            recibido4 = elEco.eco_4(enviado);
-                            for (int i=0; i < recibido4.length; i++) {
-                                System.out.println(" corto:" + recibido4[i].corto);
-                                System.out.println(" largo:" + recibido4[i].largo);
-                                System.out.println("cadena:" + recibido4[i].cadena);
-                            }
-                            break;
-                    }
-                    cuenta++;
-                    cuenta %= 4;
-                }
-            } while(!enviado.equals("x"));
-
         } catch(java.io.IOException ex) {
             System.err.println("Error de E/S: " + ex.getMessage());
             return 1;
@@ -298,9 +235,7 @@ public class Cliente extends java.applet.Applet implements ActionListener {
             ex.printStackTrace();
             throw new RuntimeException();
         }
-
         return 0;
-
     }
 
     /**
