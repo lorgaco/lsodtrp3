@@ -1,5 +1,6 @@
-package lsodtrp3;
-import Interface_lsodtrp3.*;
+//package lsodtrp3;
+//import Interface_lsodtrp3.*;
+package Interface_lsodtrp3;
 
 import java.util.*;
 import org.omg.PortableServer.*;
@@ -17,73 +18,95 @@ public class ServantCORBA extends lsodtrp3POA {
     }
 
     void nuevo(requestNuevo request, AnswerStruct response) {
-        if(request.value.key_client.equals(key_server)) {
-            Answer answer = Method.nuevo(request.value.designation, request.value.maximum);
-            response.value.answer = answer.getAnswer();
-            response.value.error = answer.getError();
-            response.value.server_error = answer.getServer_error();
+        if(request.key_client.equals(key_server)) {
+            Answer answer = Method.nuevo(request.designation, request.maximum);
+            AnswerStruct aux_response = new AnswerStruct();
+            aux_response.answer = answer.getAnswer();
+            aux_response.error = answer.getError();
+            aux_response.server_error = answer.getServer_error();
+            response.value = aux_response;
         }
         else {
-            response.value.answer = "";
-            response.value.error = Data.OK;
-            response.value.server_error = Data.AUTENTICATION_FAILED;
+            AnswerStruct aux_response = new AnswerStruct();
+            aux_response.answer = "";
+            aux_response.error = Data.OK;
+            aux_response.server_error = Data.AUTENTICATION_FAILED;
+            response.value = aux_response;
         }
     }
     void quita(requestQuita request, AnswerStruct response) {
-        if(request.value.key_client.equals(key_server)) {
-            Answer answer = Method.quita(request.value.code);
-            response.value.answer = answer.getAnswer();
-            response.value.error = answer.getError();
-            response.value.server_error = answer.getServer_error();
+        if(request.key_client.equals(key_server)) {
+            Answer answer = Method.quita(request.code);
+            AnswerStruct aux_response = new AnswerStruct();
+            aux_response.answer = answer.getAnswer();
+            aux_response.error = answer.getError();
+            aux_response.server_error = answer.getServer_error();
+            response.value = aux_response;
         }
         else {
-            response.value.answer = "";
-            response.value.error = Data.OK;
-            response.value.server_error = Data.AUTENTICATION_FAILED;
+            AnswerStruct aux_response = new AnswerStruct();
+            aux_response.answer = "";
+            aux_response.error = Data.OK;
+            aux_response.server_error = Data.AUTENTICATION_FAILED;
+            response.value = aux_response;
         }
     }
     void inscribe(requestInscribe request, AnswerStruct response) {
-        Answer answer = Method.inscribe(request.value.name, request.value.alias);
-        response.value.answer = answer.getAnswer();
-        response.value.error = answer.getError();
-        response.value.server_error = answer.getServer_error();
+        Answer answer = Method.inscribe(request.name, request.alias);
+        AnswerStruct aux_response = new AnswerStruct();
+        aux_response.answer = answer.getAnswer();
+        aux_response.error = answer.getError();
+        aux_response.server_error = answer.getServer_error();
+        response.value = aux_response;
     }
     void plantilla(requestPlantilla request, AnswerStruct response) {
-        if(request.value.key_client.equals(key_server)) {
+        if(request.key_client.equals(key_server)) {
             Answer answer = Method.plantilla();
-            response.value.answer = answer.getAnswer();
-            response.value.error = answer.getError();
-            response.value.server_error = answer.getServer_error();
+            AnswerStruct aux_response = new AnswerStruct();
+            aux_response.answer = answer.getAnswer();
+            aux_response.error = answer.getError();
+            aux_response.server_error = answer.getServer_error();
+            response.value = aux_response;
         }
         else {
-            response.value.answer = "";
-            response.value.error = Data.OK;
-            response.value.server_error = Data.AUTENTICATION_FAILED;
+            AnswerStruct aux_response = new AnswerStruct();
+            aux_response.answer = "";
+            aux_response.error = Data.OK;
+            aux_response.server_error = Data.AUTENTICATION_FAILED;
+            response.value = aux_response;
         }
     }
     void repertorio(requestRepertorio request, AnswerStruct response) {
-        Answer answer = Method.repertorio(request.value.minimum);
-        response.value.answer = answer.getAnswer();
-        response.value.error = answer.getError();
-        response.value.server_error = answer.getServer_error();
+        Answer answer = Method.repertorio(request.minimum);
+        AnswerStruct aux_response = new AnswerStruct();
+        aux_response.answer = answer.getAnswer();
+        aux_response.error = answer.getError();
+        aux_response.server_error = answer.getServer_error();
+        response.value = aux_response;
     }
     void juega(requestJuega request, AnswerStruct response) {
-        Answer answer = Method.juega(request.value.alias, request.value.code);
-        response.value.answer = answer.getAnswer();
-        response.value.error = answer.getError();
-        response.value.server_error = answer.getServer_error();
+        Answer answer = Method.juega(request.alias, request.code);
+        AnswerStruct aux_response = new AnswerStruct();
+        aux_response.answer = answer.getAnswer();
+        aux_response.error = answer.getError();
+        aux_response.server_error = answer.getServer_error();
+        response.value = aux_response;
     }
     void termina(requestTermina request, AnswerStruct response) {
-        Answer answer = Method.termina(request.value.alias, request.value.code);
-        response.value.answer = answer.getAnswer();
-        response.value.error = answer.getError();
-        response.value.server_error = answer.getServer_error();
+        Answer answer = Method.termina(request.alias, request.code);
+        AnswerStruct aux_response = new AnswerStruct();
+        aux_response.answer = answer.getAnswer();
+        aux_response.error = answer.getError();
+        aux_response.server_error = answer.getServer_error();
+        response.value = aux_response;
     }
     void lista(requestLista request, AnswerStruct response) {
-        Answer answer = Method.lista(request.value.code);
-        response.value.answer = answer.getAnswer();
-        response.value.error = answer.getError();
-        response.value.server_error = answer.getServer_error();
+        Answer answer = Method.lista(request.code);
+        AnswerStruct aux_response = new AnswerStruct();
+        aux_response.answer = answer.getAnswer();
+        aux_response.error = answer.getError();
+        aux_response.server_error = answer.getServer_error();
+        response.value = aux_response;
     }
 
     public org.omg.PortableServer.POA _default_POA() {
