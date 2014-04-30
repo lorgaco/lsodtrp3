@@ -1,6 +1,6 @@
 //package lsodtrp3;
 //import Interface_lsodtrp3.*;
-package lsodtrp;
+package lsodtr;
 
 import java.util.*;
 import org.omg.PortableServer.*;
