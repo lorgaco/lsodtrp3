@@ -86,6 +86,6 @@ public class ServantCORBA extends lsodtrp3POA {
     }
 
     public org.omg.PortableServer.POA _default_POA() {
-        return elPOA;
+        return thePOA;
     }
 }

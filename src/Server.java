@@ -18,7 +18,7 @@ final public class Server {
 
             thePOA.the_POAManager().activate();
 
-            CORBAServant servant = new CORBAServant(thePOA, Key);
+            ServantCORBA servant = new ServantCORBA(thePOA, Key);
 
             org.omg.CORBA.Object coServant = thePOA.servant_to_reference(servant);
 
@@ -50,7 +50,6 @@ final public class Server {
 
     public static void main(String args[]) {
 
-        System.setSecurityManager(new RMISecurityManager());
         if(args.length<1) {
             System.err.println("Not enough arguments");
             return;
@@ -71,7 +70,7 @@ final public class Server {
                             "com.ooc.CORBA.ORBSingleton");
                     org.omg.CORBA.ORB theORB = org.omg.CORBA.ORB.init(args, props);
 
-                    status = run(theORB);
+                    run(theORB);
 
                     if(theORB != null) theORB.destroy();
 
