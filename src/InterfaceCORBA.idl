@@ -1,0 +1,72 @@
+//****************************************************************
+//Interfaz CORBA para la aplicación de Eco
+//Basado en los ejemplos de ORBacus
+//****************************************************************
+
+#ifndef ECO_IDL
+#define ECO_IDL
+
+module lsodtr {
+/**
+* Una estructura con 2 enteros y una cadena
+**/
+struct laStruct {
+short corto;
+long largo;
+string cadena;
+};
+/**
+* Una secuencia de estructuras "laStruct"
+**/
+typedef sequence<laStruct> laSeq;
+/**
+* Interfaz para la aplicación de Eco
+* Utiliza el POA y el Servidor de Nombres
+*
+* @author Pedro S. Rodríguez Hernández
+(basado en ejemplos de ORBacus)
+*
+@version
+3.0
+*
+**/
+interface Eco {
+/**
+* Método remoto eco_1: hace el eco en un argumento de salida,
+* que es un String
+*
+* @param entrada La cadena recibida
+* @param salida La cadena devuelta
+**/
+void eco_1 (in string entrada, out string salida);
+/**
+* Método remoto eco_2: hace el eco en un argumento de salida,
+* que es una struct de CORBA (en Java, un objeto de la clase
+* laStruct)
+*
+* @param entrada La cadena recibida
+* @param salida La struct devuelta
+**/
+void eco_2 (in string entrada, out laStruct salida);
+/**
+* Método remoto eco_3: hace el eco en un argumento de salida,
+* que es una sequence de CORBA (en Java, un array de objetos
+* de la clase laStruct)
+*
+* @param entrada La cadena recibida
+* @param salida La sequence devuelta
+**/
+void eco_3 (in string entrada, out laSeq salida);
+/**
+* Método remoto eco_4: hace el eco en el resultado, que es
+* una sequence de CORBA (en Java, un array de objetos de la
+* clase laStruct)
+*
+* @param entrada La cadena recibida
+@return Una sequence de CORBA
+*
+**/
+laSeq eco_4 (in string entrada);
+};
+};
+#endif
