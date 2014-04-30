@@ -20,10 +20,10 @@ public class Client {
                     theORB.resolve_initial_references("NameService"));
 
             NameComponent nc = new NameComponent("Servidor-lsodtrp3", "");
-            NameComponent name[] = { nc };
+            NameComponent nameComponent[] = { nc };
 
             Interface_lsodtrp3.lsodtrp3 Interface = Interface_lsodtrp3.lsodtrp3Helper.narrow(
-                    inicContext.resolve(name));
+                    inicContext.resolve(nameComponent));
 
 
             BufferedReader brComand = new BufferedReader(new InputStreamReader(System.in));

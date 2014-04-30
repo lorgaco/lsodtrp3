@@ -6,7 +6,7 @@ import org.omg.PortableServer.*;
 public class ServantCORBA extends lsodtrp3POA {
 
     private POA thePOA;
-    private String Key_server;
+    private String key_server;
     private Methods Method;
 
     ServantCORBA(POA poa, String Key) {
