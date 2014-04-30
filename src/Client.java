@@ -47,14 +47,14 @@ public class Client {
                                 }
                                 int maximum = Integer.parseInt(strComand[strComand.length-1]);
                                 requestNuevoHolder request = new requestNuevoHolder();
-                                request.designation = designation;
-                                request.maximum = maximum;
-                                request.key_client = Key;
+                                request.value.designation = designation;
+                                request.value.maximum = maximum;
+                                request.value.key_client = Key;
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.nuevo(request, response);
-                                int iError = response.error;
-                                int iServerError = response.server_error;
-                                String sResponse = response.answer;
+                                int iError = response.value.error;
+                                int iServerError = response.value.server_error;
+                                String sResponse = response.value.answer;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -69,12 +69,12 @@ public class Client {
                             else{
                                 short code = Short.parseShort(strComand[1].toString());
                                 requestQuitaHolder request = new requestQuitaHolder();
-                                request.code = code;
-                                request.key_client = Key;
+                                request.value.code = code;
+                                request.value.key_client = Key;
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.quita(request, response);
-                                int iError = response.error;
-                                int iServerError = response.server_error;
+                                int iError = response.value.error;
+                                int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -93,12 +93,12 @@ public class Client {
                                 }
                                 String alias = strComand[strComand.length-1].toString();
                                 requestInscribeHolder request = new requestInscribeHolder();
-                                request.name = name;
-                                request.alias = alias;
+                                request.value.name = name;
+                                request.value.alias = alias;
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.inscribe(request, response);
-                                int iError = response.error;
-                                int iServerError = response.server_error;
+                                int iError = response.value.error;
+                                int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -110,12 +110,12 @@ public class Client {
                         }
                         else if(method.equals("PLANTILLA")){
                             requestPlantillaHolder request = new requestPlantillaHolder();
-                            request.key_client = Key;
+                            request.value.key_client = Key;
                             AnswerStructHolder response = new AnswerStructHolder();
                             Interface.plantilla(request, response);
-                            int iError = response.error;
-                            int iServerError = response.server_error;
-                            String sResponse = response.answer;
+                            int iError = response.value.error;
+                            int iServerError = response.value.server_error;
+                            String sResponse = response.value.answer;
                             if(iError!=Data.OK  || iServerError!=Data.OK) {
                                 System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                 System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -132,12 +132,12 @@ public class Client {
                             else{
                                 byte minimum = Byte.parseByte(strComand[1].toString());
                                 requestRepertorioHolder request = new requestRepertorioHolder();
-                                request.minimum = minimum;
+                                request.value.minimum = minimum;
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.repertorio(request, response);
-                                int iError = response.error;
-                                int iServerError = response.server_error;
-                                String sResponse = response.answer;
+                                int iError = response.value.error;
+                                int iServerError = response.value.server_error;
+                                String sResponse = response.value.answer;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -156,12 +156,12 @@ public class Client {
                                 String alias = strComand[1].toString();
                                 short code = Short.parseShort(strComand[2].toString());
                                 requestJuegaHolder request = new requestJuegaHolder();
-                                request.alias = alias;
-                                request.code = code;
+                                request.value.alias = alias;
+                                request.value.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.juega(request, response);
-                                int iError = response.error;
-                                int iServerError = response.server_error;
+                                int iError = response.value.error;
+                                int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -177,12 +177,12 @@ public class Client {
                                 String alias = strComand[1].toString();
                                 short code = Short.parseShort(strComand[2].toString());
                                 requestTerminaHolder request = new requestTerminaHolder();
-                                request.alias = alias;
-                                request.code = code;
+                                request.value.alias = alias;
+                                request.value.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.termina(request, response);
-                                int iError = response.error;
-                                int iServerError = response.server_error;
+                                int iError = response.value.error;
+                                int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -197,12 +197,12 @@ public class Client {
                             else{
                                 short code = Short.parseShort(strComand[1].toString());
                                 requestListaHolder request = new requestListaHolder();
-                                request.code = code;
+                                request.value.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.lista(request, response);
-                                int iError = response.error;
-                                int iServerError = response.server_error;
-                                String sResponse = response.answer;
+                                int iError = response.value.error;
+                                int iServerError = response.value.server_error;
+                                String sResponse = response.value.answer;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
