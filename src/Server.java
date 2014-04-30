@@ -2,7 +2,7 @@ import org.omg.CORBA.*;
 import org.omg.CosNaming.*;
 import org.omg.PortableServer.*;
 
-final public class Servidor {
+final public class Server {
 
     static String Key;
 
@@ -27,7 +27,7 @@ final public class Servidor {
             NameComponent name[] = { nc };
             inicContext.rebind(name, coServant);
 
-            elORB.run();
+            theORB.run();
 
         } catch(java.io.IOException ex) {
             System.err.println("Servidor de Eco: no puedo escribir en ‘" +
@@ -71,7 +71,7 @@ final public class Servidor {
 
                     status = run(theORB);
 
-                    if(elORB != null) elORB.destroy();
+                    if(theORB != null) theORB.destroy();
 
                 } catch(Exception ex) {
                     ex.printStackTrace();
