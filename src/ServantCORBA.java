@@ -7,7 +7,7 @@ public class ServantCORBA extends EcoPOA {
     private String Key_server;
     private Methods Method;
 
-    ServantCORBA(POA poa, Key) {
+    ServantCORBA(POA poa) {
         thePOA = poa;
         Key_server = Key;
         Method = new Methods();
