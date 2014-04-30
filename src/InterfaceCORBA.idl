@@ -1,5 +1,5 @@
-#ifndef Interface_lsodtrp3
-#define Interface_lsodtrp3
+#ifndef Interface_IDL
+#define Interface_IDL
 
 module Interface_lsodtrp3 {
 
