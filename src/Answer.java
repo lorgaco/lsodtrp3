@@ -1,4 +1,5 @@
 package lsodtrp3;
+import Interface_lsodtrp3.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

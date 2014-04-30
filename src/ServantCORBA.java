@@ -1,4 +1,5 @@
 package lsodtrp3;
+import Interface_lsodtrp3.*;
 
 import java.util.*;
 import org.omg.PortableServer.*;
@@ -11,7 +12,7 @@ public class ServantCORBA extends lsodtrp3POA {
 
     ServantCORBA(POA poa, String Key) {
         thePOA = poa;
-        Key_server = Key;
+        key_server = Key;
         Method = new Methods();
     }
 
