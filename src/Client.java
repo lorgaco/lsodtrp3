@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import org.omg.CosNaming.*;
 
-public class Cliente extends java.applet.Applet implements ActionListener {
+public class Client {
 
     private static final long serialVersionUID = 3;
     String Key = null;
@@ -267,7 +267,6 @@ public class Cliente extends java.applet.Applet implements ActionListener {
 
                 } catch(Exception ex) {
                     ex.printStackTrace();
-                    status = 1;
                 }
             } catch(Exception e) {
                 System.err.println("Excepción de Sistema: " + e);
