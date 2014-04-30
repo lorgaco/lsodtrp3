@@ -1,4 +1,3 @@
-package lsodtr;
 import java.awt.*;
 import java.awt.event.*;
 import org.omg.CosNaming.*;
