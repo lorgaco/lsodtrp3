@@ -92,16 +92,16 @@ public class ServantCORBA extends lsodtrp3POA {
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void termina(requestTerminaHolder request, AnswerStructHolder response) {
-        Answer answer = Method.termina(request.value.alias, request.value.code);
+    void lista(requestListaHolder request, AnswerStructHolder response) {
+        Answer answer = Method.lista(request.value.code);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
         aux_response.error = answer.getError();
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void lista(requestListaHolder request, AnswerStructHolder response) {
-        Answer answer = Method.lista(request.value.code);
+    void termina(requestTerminaHolder request, AnswerStructHolder response) {
+        Answer answer = Method.termina(request.value.alias, request.value.code);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
         aux_response.error = answer.getError();
