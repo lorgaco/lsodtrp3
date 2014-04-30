@@ -52,7 +52,7 @@ public class Client {
                                 request.value.maximum = maximum;
                                 request.value.key_client = Key;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.nuevo(request, response);
+                                Interface.nuevo(request.value, response.value);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 String sResponse = response.value.answer;
@@ -73,7 +73,7 @@ public class Client {
                                 request.value.code = code;
                                 request.value.key_client = Key;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.quita(request, response);
+                                Interface.quita(request.value, response.value);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
@@ -97,7 +97,7 @@ public class Client {
                                 request.value.name = name;
                                 request.value.alias = alias;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.inscribe(request, response);
+                                Interface.inscribe(request.value, response.value);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
@@ -113,7 +113,7 @@ public class Client {
                             requestPlantillaHolder request = new requestPlantillaHolder();
                             request.value.key_client = Key;
                             AnswerStructHolder response = new AnswerStructHolder();
-                            Interface.plantilla(request, response);
+                            Interface.plantilla(request.value, response.value);
                             int iError = response.value.error;
                             int iServerError = response.value.server_error;
                             String sResponse = response.value.answer;
@@ -135,7 +135,7 @@ public class Client {
                                 requestRepertorioHolder request = new requestRepertorioHolder();
                                 request.value.minimum = minimum;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.repertorio(request, response);
+                                Interface.repertorio(request.value, response.value);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 String sResponse = response.value.answer;
@@ -160,7 +160,7 @@ public class Client {
                                 request.value.alias = alias;
                                 request.value.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.juega(request, response);
+                                Interface.juega(request.value, response.value);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
@@ -181,7 +181,7 @@ public class Client {
                                 request.value.alias = alias;
                                 request.value.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.termina(request, response);
+                                Interface.termina(request.value, response.value);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
@@ -200,7 +200,7 @@ public class Client {
                                 requestListaHolder request = new requestListaHolder();
                                 request.value.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.lista(request, response);
+                                Interface.lista(request.value, response.value);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 String sResponse = response.value.answer;
