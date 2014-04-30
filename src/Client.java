@@ -1,6 +1,6 @@
 //package lsodtrp3;
 //import Interface_lsodtrp3.*;
-package Interface_lsodtrp3;
+package lsodtrp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class Client {
             NameComponent nc = new NameComponent("Servidor-lsodtrp3", "");
             NameComponent nameComponent[] = { nc };
 
-            Interface_lsodtrp3.lsodtrp3 Interface = Interface_lsodtrp3.lsodtrp3Helper.narrow(
+            lsodtr.lsodtrp3 Interface = lsodtr.lsodtrp3Helper.narrow(
                     inicContext.resolve(nameComponent));
 
 

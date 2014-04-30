@@ -1,6 +1,6 @@
 //package lsodtrp3;
 //import Interface_lsodtrp3.*;
-package Interface_lsodtrp3;
+package lsodtrp;
 
 public class Data {
 	// socket and message parameters

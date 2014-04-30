@@ -1,7 +1,7 @@
 #ifndef Interface_IDL
 #define Interface_IDL
 
-module Interface_lsodtrp3 {
+module lsodtrp {
 
     struct AnswerStruct{
 	    long error;
