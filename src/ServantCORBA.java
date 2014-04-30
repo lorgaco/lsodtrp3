@@ -17,7 +17,7 @@ public class ServantCORBA extends lsodtrp3POA {
         Method = new Methods();
     }
 
-    void nuevo(requestNuevo request, AnswerStructHolder response) {
+    public void nuevo(requestNuevo request, AnswerStructHolder response) {
         if(request.key_client.equals(key_server)) {
             Answer answer = Method.nuevo(request.designation, request.maximum);
             AnswerStruct aux_response = new AnswerStruct();
@@ -34,7 +34,7 @@ public class ServantCORBA extends lsodtrp3POA {
             response.value = aux_response;
         }
     }
-    void quita(requestQuita request, AnswerStructHolder response) {
+    public void quita(requestQuita request, AnswerStructHolder response) {
         if(request.key_client.equals(key_server)) {
             Answer answer = Method.quita(request.code);
             AnswerStruct aux_response = new AnswerStruct();
@@ -51,7 +51,7 @@ public class ServantCORBA extends lsodtrp3POA {
             response.value = aux_response;
         }
     }
-    void inscribe(requestInscribe request, AnswerStructHolder response) {
+    public void inscribe(requestInscribe request, AnswerStructHolder response) {
         Answer answer = Method.inscribe(request.name, request.alias);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
@@ -59,7 +59,7 @@ public class ServantCORBA extends lsodtrp3POA {
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void plantilla(requestPlantilla request, AnswerStructHolder response) {
+    public void plantilla(requestPlantilla request, AnswerStructHolder response) {
         if(request.key_client.equals(key_server)) {
             Answer answer = Method.plantilla();
             AnswerStruct aux_response = new AnswerStruct();
@@ -76,7 +76,7 @@ public class ServantCORBA extends lsodtrp3POA {
             response.value = aux_response;
         }
     }
-    void repertorio(requestRepertorio request, AnswerStructHolder response) {
+    public void repertorio(requestRepertorio request, AnswerStructHolder response) {
         Answer answer = Method.repertorio(request.minimum);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
@@ -84,7 +84,7 @@ public class ServantCORBA extends lsodtrp3POA {
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void juega(requestJuega request, AnswerStructHolder response) {
+    public void juega(requestJuega request, AnswerStructHolder response) {
         Answer answer = Method.juega(request.alias, request.code);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
@@ -92,7 +92,7 @@ public class ServantCORBA extends lsodtrp3POA {
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void termina(requestTermina request, AnswerStructHolder response) {
+    public void termina(requestTermina request, AnswerStructHolder response) {
         Answer answer = Method.termina(request.alias, request.code);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
@@ -100,7 +100,7 @@ public class ServantCORBA extends lsodtrp3POA {
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void lista(requestLista request, AnswerStructHolder response) {
+    public void lista(requestLista request, AnswerStructHolder response) {
         Answer answer = Method.lista(request.code);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
