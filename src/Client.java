@@ -1,0 +1,343 @@
+package lsodtr;
+import java.awt.*;
+import java.awt.event.*;
+import org.omg.CosNaming.*;
+
+public class Cliente extends java.applet.Applet implements ActionListener {
+
+    private static final long serialVersionUID = 3;
+    String Key = null;
+
+    /**
+     * Contiene el código que ejecuta el cliente
+     **/
+    static int run(org.omg.CORBA.ORB theORB, String[] args) throws org.omg.CORBA.UserException {
+        try {
+
+            NamingContext inicContext = NamingContextExtHelper.narrow(
+                    theORB.resolve_initial_references("NameService"));
+
+            NameComponent nc = new NameComponent("Servidor-lsodtrp3", "");
+            NameComponent name[] = { nc };
+
+            Interface_lsodtrp3.lsodtrp3 Interface = Interface_lsodtrp3.lsodtrp3Helper.narrow(
+                    inicContext.resolve(name));
+
+
+            BufferedReader brComand = new BufferedReader(new InputStreamReader(System.in));
+            while(true){
+                System.out.println("Escriba comando:");
+                try {
+                    String strComand[] = brComand.readLine().split(" ");
+                    if(strComand.length<1){
+                        System.err.println("Not enough arguments");
+                        break;
+                    }
+                    else{
+                        String method = Data.PromptToMethod(strComand[0].toString());
+                        if(method.equals("NUEVO")){
+                            if(strComand.length<3) System.err.println("Not enough arguments");
+                            else{
+                                String designation = strComand[1].toString();
+                                for(int i = 2; i < strComand.length-1; i++) {
+                                    designation = designation + " " + strComand[i].toString();
+                                }
+                                int maximum = Integer.parseInt(strComand[strComand.length-1]);
+                                requestNuevoHolder request = new requestNuevoHolder();
+                                request.designation = designation;
+                                request.maximum = maximum;
+                                request.key_client = Key;
+                                AnswerHolder response = new AnswerHolder();
+                                Interface.nuevo(request, response);
+                                int iError = response.error;
+                                int iServerError = Response.server_error;
+                                String sResponse = Response.answer;
+                                if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                }
+                                else {
+                                    System.out.println("Juego creado con id " + sResponse);
+                                }
+                            }
+                        }
+                        else if(method.equals("QUITA")){
+                            if(strComand.length<2) System.err.println("Not enough arguments");
+                            else{
+                                short code = Short.parseShort(strComand[1].toString());
+                                requestQuitaHolder request = new requestQuitaHolder();
+                                request.code = code;
+                                request.key_client = Key;
+                                AnswerHolder response = new AnswerHolder();
+                                Interface.quita(request, response);
+                                int iError = response.error;
+                                int iServerError = Response.server_error;
+                                if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                }
+                                else {
+                                    System.out.println("Juego eliminado");
+                                }
+                            }
+                        }
+                        else if(method.equals("INSCRIBE")){
+                            if(strComand.length<3) System.err.println("Not enough arguments");
+                            else{
+                                String name = strComand[1].toString();
+                                for(int i = 2; i < strComand.length-1; i++) {
+                                    name = name + " " + strComand[i].toString();
+                                }
+                                String alias = strComand[strComand.length-1].toString();
+                                requestInscribeHolder request = new requestInscribeHolder();
+                                request.name = name;
+                                request.alias = alias;
+                                AnswerHolder response = new AnswerHolder();
+                                Interface.inscribe(request, response);
+                                int iError = response.error;
+                                int iServerError = Response.server_error;
+                                if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                }
+                                else {
+                                    System.out.println("Inscrito");
+                                }
+                            }
+                        }
+                        else if(method.equals("PLANTILLA")){
+                            requestPlantillaHolder request = new requestPlantillaHolder();
+                            request.key_client = Key;
+                            AnswerHolder response = new AnswerHolder();
+                            Interface.plantilla(request, response);
+                            int iError = response.error;
+                            int iServerError = Response.server_error;
+                            String sResponse = Response.answer;
+                            if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                            }
+                            else {
+                                String[] aResponse = sResponse.split("(, )|\\]|\\[");
+                                for(int ii=0; ii<aResponse.length; ii++){
+                                    System.out.println(aResponse[ii]);
+                                }
+                            }
+                        }
+                        else if(method.equals("REPERTORIO")){
+                            if(strComand.length<2) System.err.println("Not enough arguments");
+                            else{
+                                byte minimum = Byte.parseByte(strComand[1].toString());
+                                requestRepertorioHolder request = new requestRepertorioHolder();
+                                request.minimum = minimum;
+                                AnswerHolder response = new AnswerHolder();
+                                Interface.repertorio(request, response);
+                                int iError = response.error;
+                                int iServerError = Response.server_error;
+                                String sResponse = Response.answer;
+                                if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                }
+                                else {
+                                    String[] aResponse = sResponse.split("(, )|\\]|\\[");
+                                    for(int ii=0; ii<aResponse.length; ii++){
+                                        System.out.println(aResponse[ii]);
+                                    }
+                                }
+                            }
+                        }
+                        else if(method.equals("JUEGA")){
+                            if(strComand.length<3) System.err.println("Not enough arguments");
+                            else{
+                                String alias = strComand[1].toString();
+                                short code = Short.parseShort(strComand[2].toString());
+                                requestJuegaHolder request = new requestJuegaHolder();
+                                request.alias = alias;
+                                request.code = code;
+                                AnswerHolder response = new AnswerHolder();
+                                Interface.juega(request, response);
+                                int iError = response.error;
+                                int iServerError = Response.server_error;
+                                if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                }
+                                else {
+                                    System.out.println("jugando");
+                                }
+                            }
+                        }
+                        else if(method.equals("TERMINA")){
+                            if(strComand.length<3) System.err.println("Not enough arguments");
+                            else{
+                                String alias = strComand[1].toString();
+                                short code = Short.parseShort(strComand[2].toString());
+                                Answer Response = ModuleRMI.termina(alias, code);
+                                int iError = Response.getError();
+                                int iServerError = Response.getServer_error();
+                                if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                }
+                                else {
+                                    System.out.println("Desconectado");
+                                }
+                            }
+                        }
+                        else if(method.equals("LISTA")){
+                            if(strComand.length<2) System.err.println("Not enough arguments");
+                            else{
+                                short code = Short.parseShort(strComand[1].toString());
+                                Answer Response = ModuleRMI.lista(code);
+                                int iError = Response.getError();
+                                int iServerError = Response.getServer_error();
+                                String sResponse = Response.getAnswer();
+                                if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                }
+                                else {
+                                    String[] aResponse = sResponse.split("(, )|\\]|\\[");
+                                    for(int ii=0; ii<aResponse.length; ii++){
+                                        System.out.println(aResponse[ii]);
+                                    }
+                                }
+                            }
+                        }
+                        else if(method.equals("FINAL")){
+                            System.out.println("FINAL");
+                            break;
+                        }
+                    }
+                } catch (IOException e) {
+                    System.err.println("ERROR: " + e.getMessage());
+                    break;
+                }
+            }
+
+
+
+
+
+            //
+            // Bucle principal del Cliente de Eco
+            //
+            System.out.println("Introduce mensaje o ’x’ para terminar:");
+            String enviado;
+            java.io.DataInputStream dataIn =
+                    new java.io.DataInputStream(System.in);
+            java.io.BufferedReader in = new java.io.BufferedReader(
+                    new java.io.InputStreamReader(dataIn));
+
+            org.omg.CORBA.StringHolder recibido1 =
+                    new org.omg.CORBA.StringHolder();
+            laStructHolder recibido2 = new laStructHolder();
+            laSeqHolder recibido3 = new laSeqHolder();
+            laStruct [] recibido4;
+            int cuenta = 0;
+
+            do {
+                System.out.print("Eco> ");
+
+                enviado = in.readLine();
+
+                if(enviado == null)
+                    break;
+
+                if(!enviado.equals("x")) {
+                    switch(cuenta) {
+                        case 0 :
+                            elEco.eco_1(enviado, recibido1);
+                            System.out.println("cadena:" + recibido1.value);
+                            break;
+
+                        case 1 :
+                            elEco.eco_2(enviado, recibido2);
+                            System.out.println(" corto:" + recibido2.value.corto);
+                            System.out.println(" largo:" + recibido2.value.largo);
+                            System.out.println("cadena:" + recibido2.value.cadena);
+                            break;
+
+                        case 2 :
+                            elEco.eco_3(enviado, recibido3);
+                            for (int i=0; i < recibido3.value.length; i++) {
+                                System.out.println(" corto:" +
+                                        recibido3.value[i].corto);
+                                System.out.println(" largo:" +
+                                        recibido3.value[i].largo);
+                                System.out.println("cadena:" +
+                                        recibido3.value[i].cadena);
+                            }
+                            break;
+
+                        case 3 :
+                            recibido4 = elEco.eco_4(enviado);
+                            for (int i=0; i < recibido4.length; i++) {
+                                System.out.println(" corto:" + recibido4[i].corto);
+                                System.out.println(" largo:" + recibido4[i].largo);
+                                System.out.println("cadena:" + recibido4[i].cadena);
+                            }
+                            break;
+                    }
+                    cuenta++;
+                    cuenta %= 4;
+                }
+            } while(!enviado.equals("x"));
+
+        } catch(java.io.IOException ex) {
+            System.err.println("Error de E/S: " + ex.getMessage());
+            return 1;
+        } catch (org.omg.CORBA.SystemException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException();
+        } catch (org.omg.CORBA.UserException ex) {
+            ex.printStackTrace();
+            60throw new RuntimeException();
+        } catch (java.lang.Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException();
+        }
+
+        return 0;
+
+    }
+
+    /**
+     * Inicialización de la aplicación
+     **/
+    public static void main(String args[]) {
+
+        if(args.length<1) {
+            System.err.println("Not enough arguments");
+            return;
+        }
+        else{
+            try {
+                if(args.length>2) {
+                    if(args[1].equals("-k") || args[1].equals("-K")) {
+                        Key=args[2];
+                        System.out.println("Admin key: " + Key);
+                    }
+                }
+                try {
+                    java.util.Properties props = System.getProperties();
+                    props.put("org.omg.CORBA.ORBClass", "com.ooc.CORBA.ORB");
+                    props.put("org.omg.CORBA.ORBSingletonClass",
+                            "com.ooc.CORBA.ORBSingleton");
+
+                    org.omg.CORBA.ORB theORB = org.omg.CORBA.ORB.init(args, props);
+                    status = run(theORB, args);
+
+                    if(theORB != null) theORB.destroy();
+
+                } catch(Exception ex) {
+                    ex.printStackTrace();
+                    status = 1;
+                }
+            } catch(Exception e) {
+                System.err.println("Excepción de Sistema: " + e);
+            }
+        }
+    }
+}
