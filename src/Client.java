@@ -1,7 +1,8 @@
 package lsodtrp3;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import org.omg.CosNaming.*;
 
 public class Client {
@@ -96,7 +97,7 @@ public class Client {
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.inscribe(request, response);
                                 int iError = response.error;
-                                int iServerError = Response.server_error;
+                                int iServerError = response.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -159,7 +160,7 @@ public class Client {
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.juega(request, response);
                                 int iError = response.error;
-                                int iServerError = Response.server_error;
+                                int iServerError = response.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -180,7 +181,7 @@ public class Client {
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.termina(request, response);
                                 int iError = response.error;
-                                int iServerError = Response.server_error;
+                                int iServerError = response.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -263,7 +264,7 @@ public class Client {
                             "com.ooc.CORBA.ORBSingleton");
 
                     org.omg.CORBA.ORB theORB = org.omg.CORBA.ORB.init(args, props);
-                    status = run(theORB, args);
+                    run(theORB, args);
 
                     if(theORB != null) theORB.destroy();
 
