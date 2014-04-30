@@ -3,7 +3,7 @@
 
 module Interface_lsodtrp3 {
 
-    struct Answer{
+    struct AnswerStruct{
 	    short error;
 	    short server_error;
 	    string answer;
@@ -49,14 +49,14 @@ module Interface_lsodtrp3 {
 
     interface lsodtrp3 {
 
-        void nuevo(in requestNuevo request, out Answer response);
-        void quita(in requestQuita request, out Answer response);
-        void inscribe(in requestInscribe request, out Answer response);
-        void plantilla(in requestPlantilla request, out Answer response);
-        void repertorio(in requestRepertorio request, out Answer response);
-        void juega(in requestJuega request, out Answer response);
-        void termina(in requestTermina request, out Answer response);
-        void lista(in requestLista request, out Answer response);
+        void nuevo(in requestNuevo request, out AnswerStruct response);
+        void quita(in requestQuita request, out AnswerStruct response);
+        void inscribe(in requestInscribe request, out AnswerStruct response);
+        void plantilla(in requestPlantilla request, out AnswerStruct response);
+        void repertorio(in requestRepertorio request, out AnswerStruct response);
+        void juega(in requestJuega request, out AnswerStruct response);
+        void termina(in requestTermina request, out AnswerStruct response);
+        void lista(in requestLista request, out AnswerStruct response);
     };
 };
 #endif
