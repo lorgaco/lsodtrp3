@@ -10,9 +10,9 @@ JAVAC		= javac
 JIDL		= $(top_srcdir)/bin/jidl
 
 all:: clases generado
-	${JIDL} -I. --all --output-dir generado Eco.idl
+	${JIDL} -I. --all --output-dir generado ./src/InterfaceCORBA.idl
 	CLASSPATH=.:generado:${ORBACUSCP}:$$CLASSPATH \
-	${JAVAC} -deprecation -d clases *.java generado/lsodtr/*.java
+	${JAVAC} -deprecation -d clases ./src/*.java generado/lsodtr/*.java
 
 clases:
 	mkdir clases
