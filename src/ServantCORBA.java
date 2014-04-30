@@ -1,7 +1,7 @@
 import java.util.*;
 import org.omg.PortableServer.*;
 
-public class ServantCORBA extends InterfaceCORBAPOA {
+public class ServantCORBA extends lsodtrp3POA {
 
     private POA thePOA;
     private String Key_server;
