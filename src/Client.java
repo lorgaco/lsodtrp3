@@ -47,12 +47,12 @@ public class Client {
                                     designation = designation + " " + strComand[i].toString();
                                 }
                                 int maximum = Integer.parseInt(strComand[strComand.length-1]);
-                                requestNuevoHolder request = new requestNuevoHolder();
-                                request.value.designation = designation;
-                                request.value.maximum = maximum;
-                                request.value.key_client = Key;
+                                requestNuevo request = new requestNuevo();
+                                request.designation = designation;
+                                request.maximum = maximum;
+                                request.key_client = Key;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.nuevo(request.value, response.value);
+                                Interface.nuevo(request, response);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 String sResponse = response.value.answer;
@@ -69,11 +69,11 @@ public class Client {
                             if(strComand.length<2) System.err.println("Not enough arguments");
                             else{
                                 short code = Short.parseShort(strComand[1].toString());
-                                requestQuitaHolder request = new requestQuitaHolder();
-                                request.value.code = code;
-                                request.value.key_client = Key;
+                                requestQuita request = new requestQuita();
+                                request.code = code;
+                                request.key_client = Key;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.quita(request.value, response.value);
+                                Interface.quita(request, response);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
@@ -93,11 +93,11 @@ public class Client {
                                     name = name + " " + strComand[i].toString();
                                 }
                                 String alias = strComand[strComand.length-1].toString();
-                                requestInscribeHolder request = new requestInscribeHolder();
-                                request.value.name = name;
-                                request.value.alias = alias;
+                                requestInscribe request = new requestInscribe();
+                                request.name = name;
+                                request.alias = alias;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.inscribe(request.value, response.value);
+                                Interface.inscribe(request, response);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
@@ -110,10 +110,10 @@ public class Client {
                             }
                         }
                         else if(method.equals("PLANTILLA")){
-                            requestPlantillaHolder request = new requestPlantillaHolder();
-                            request.value.key_client = Key;
+                            requestPlantilla request = new requestPlantilla();
+                            request.key_client = Key;
                             AnswerStructHolder response = new AnswerStructHolder();
-                            Interface.plantilla(request.value, response.value);
+                            Interface.plantilla(request, response);
                             int iError = response.value.error;
                             int iServerError = response.value.server_error;
                             String sResponse = response.value.answer;
@@ -132,10 +132,10 @@ public class Client {
                             if(strComand.length<2) System.err.println("Not enough arguments");
                             else{
                                 byte minimum = Byte.parseByte(strComand[1].toString());
-                                requestRepertorioHolder request = new requestRepertorioHolder();
-                                request.value.minimum = minimum;
+                                requestRepertorio request = new requestRepertorio();
+                                request.minimum = minimum;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.repertorio(request.value, response.value);
+                                Interface.repertorio(request, response);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 String sResponse = response.value.answer;
@@ -156,11 +156,11 @@ public class Client {
                             else{
                                 String alias = strComand[1].toString();
                                 short code = Short.parseShort(strComand[2].toString());
-                                requestJuegaHolder request = new requestJuegaHolder();
-                                request.value.alias = alias;
-                                request.value.code = code;
+                                requestJuega request = new requestJuega();
+                                request.alias = alias;
+                                request.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.juega(request.value, response.value);
+                                Interface.juega(request, response);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
@@ -177,11 +177,11 @@ public class Client {
                             else{
                                 String alias = strComand[1].toString();
                                 short code = Short.parseShort(strComand[2].toString());
-                                requestTerminaHolder request = new requestTerminaHolder();
-                                request.value.alias = alias;
-                                request.value.code = code;
+                                requestTermina request = new requestTermina();
+                                request.alias = alias;
+                                request.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.termina(request.value, response.value);
+                                Interface.termina(request, response);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
@@ -197,10 +197,10 @@ public class Client {
                             if(strComand.length<2) System.err.println("Not enough arguments");
                             else{
                                 short code = Short.parseShort(strComand[1].toString());
-                                requestListaHolder request = new requestListaHolder();
-                                request.value.code = code;
+                                requestLista request = new requestLista();
+                                request.code = code;
                                 AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.lista(request.value, response.value);
+                                Interface.lista(request, response);
                                 int iError = response.value.error;
                                 int iServerError = response.value.server_error;
                                 String sResponse = response.value.answer;
