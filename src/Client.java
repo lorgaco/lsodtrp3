@@ -7,7 +7,7 @@ import org.omg.CosNaming.*;
 public class Client {
 
     private static final long serialVersionUID = 3;
-    String Key = null;
+    static String Key = null;
 
     /**
      * Contiene el código que ejecuta el cliente
@@ -51,8 +51,8 @@ public class Client {
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.nuevo(request, response);
                                 int iError = response.error;
-                                int iServerError = Response.server_error;
-                                String sResponse = Response.answer;
+                                int iServerError = response.server_error;
+                                String sResponse = response.answer;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -72,7 +72,7 @@ public class Client {
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.quita(request, response);
                                 int iError = response.error;
-                                int iServerError = Response.server_error;
+                                int iServerError = response.server_error;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -112,8 +112,8 @@ public class Client {
                             AnswerStructHolder response = new AnswerStructHolder();
                             Interface.plantilla(request, response);
                             int iError = response.error;
-                            int iServerError = Response.server_error;
-                            String sResponse = Response.answer;
+                            int iServerError = response.server_error;
+                            String sResponse = response.answer;
                             if(iError!=Data.OK  || iServerError!=Data.OK) {
                                 System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                 System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -134,8 +134,8 @@ public class Client {
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.repertorio(request, response);
                                 int iError = response.error;
-                                int iServerError = Response.server_error;
-                                String sResponse = Response.answer;
+                                int iServerError = response.server_error;
+                                String sResponse = response.answer;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
@@ -199,8 +199,8 @@ public class Client {
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.lista(request, response);
                                 int iError = response.error;
-                                int iServerError = Response.server_error;
-                                String sResponse = Response.answer;
+                                int iServerError = response.server_error;
+                                String sResponse = response.answer;
                                 if(iError!=Data.OK  || iServerError!=Data.OK) {
                                     System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
                                     System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
