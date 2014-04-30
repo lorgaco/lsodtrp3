@@ -23,7 +23,7 @@ public class ServantCORBA extends EcoPOA {
         else {
             response.value.answer = "";
             response.value.error = Data.OK;
-            response.value.server_error = Data.AUTENTICATION_FAILED);
+            response.value.server_error = Data.AUTENTICATION_FAILED;
         }
     }
     void quita(requestQuita request, AnswerStruct response) {
@@ -36,7 +36,7 @@ public class ServantCORBA extends EcoPOA {
         else {
             response.value.answer = "";
             response.value.error = Data.OK;
-            response.value.server_error = Data.AUTENTICATION_FAILED);
+            response.value.server_error = Data.AUTENTICATION_FAILED;
         }
     }
     void inscribe(requestInscribe request, AnswerStruct response) {
@@ -55,7 +55,7 @@ public class ServantCORBA extends EcoPOA {
         else {
             response.value.answer = "";
             response.value.error = Data.OK;
-            response.value.server_error = Data.AUTENTICATION_FAILED);
+            response.value.server_error = Data.AUTENTICATION_FAILED;
         }
     }
     void repertorio(requestRepertorio request, AnswerStruct response) {
