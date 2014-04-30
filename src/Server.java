@@ -1,3 +1,5 @@
+package lsodtrp3;
+
 import org.omg.CORBA.*;
 import org.omg.CosNaming.*;
 import org.omg.PortableServer.*;

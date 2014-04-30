@@ -1,3 +1,4 @@
+package lsodtrp3;
 
 public class Data {
 	// socket and message parameters
