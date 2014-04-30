@@ -1,7 +1,7 @@
 import java.util.*;
 import org.omg.PortableServer.*;
 
-public class ServantCORBA extends EcoPOA {
+public class ServantCORBA extends InterfaceCORBAPOA {
 
     private POA thePOA;
     private String Key_server;
