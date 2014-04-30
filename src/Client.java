@@ -229,7 +229,7 @@ public class Cliente extends java.applet.Applet implements ActionListener {
             throw new RuntimeException();
         } catch (org.omg.CORBA.UserException ex) {
             ex.printStackTrace();
-            60throw new RuntimeException();
+            throw new RuntimeException();
         } catch (java.lang.Exception ex) {
             ex.printStackTrace();
             throw new RuntimeException();
