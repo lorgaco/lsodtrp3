@@ -226,9 +226,6 @@ public class Client {
                     break;
                 }
             }
-        } catch(java.io.IOException ex) {
-            System.err.println("Error de E/S: " + ex.getMessage());
-            return 1;
         } catch (org.omg.CORBA.SystemException ex) {
             ex.printStackTrace();
             throw new RuntimeException();
