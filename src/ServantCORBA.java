@@ -17,9 +17,9 @@ public class ServantCORBA extends lsodtrp3POA {
         Method = new Methods();
     }
 
-    void nuevo(requestNuevoHolder request, AnswerStructHolder response) {
-        if(request.value.key_client.equals(key_server)) {
-            Answer answer = Method.nuevo(request.value.designation, request.value.maximum);
+    void nuevo(requestNuevo request, AnswerStructHolder response) {
+        if(request.key_client.equals(key_server)) {
+            Answer answer = Method.nuevo(request.designation, request.maximum);
             AnswerStruct aux_response = new AnswerStruct();
             aux_response.answer = answer.getAnswer();
             aux_response.error = answer.getError();
@@ -34,9 +34,9 @@ public class ServantCORBA extends lsodtrp3POA {
             response.value = aux_response;
         }
     }
-    void quita(requestQuitaHolder request, AnswerStructHolder response) {
-        if(request.value.key_client.equals(key_server)) {
-            Answer answer = Method.quita(request.value.code);
+    void quita(requestQuita request, AnswerStructHolder response) {
+        if(request.key_client.equals(key_server)) {
+            Answer answer = Method.quita(request.code);
             AnswerStruct aux_response = new AnswerStruct();
             aux_response.answer = answer.getAnswer();
             aux_response.error = answer.getError();
@@ -51,16 +51,16 @@ public class ServantCORBA extends lsodtrp3POA {
             response.value = aux_response;
         }
     }
-    void inscribe(requestInscribeHolder request, AnswerStructHolder response) {
-        Answer answer = Method.inscribe(request.value.name, request.value.alias);
+    void inscribe(requestInscribe request, AnswerStructHolder response) {
+        Answer answer = Method.inscribe(request.name, request.alias);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
         aux_response.error = answer.getError();
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void plantilla(requestPlantillaHolder request, AnswerStructHolder response) {
-        if(request.value.key_client.equals(key_server)) {
+    void plantilla(requestPlantilla request, AnswerStructHolder response) {
+        if(request.key_client.equals(key_server)) {
             Answer answer = Method.plantilla();
             AnswerStruct aux_response = new AnswerStruct();
             aux_response.answer = answer.getAnswer();
@@ -76,32 +76,32 @@ public class ServantCORBA extends lsodtrp3POA {
             response.value = aux_response;
         }
     }
-    void repertorio(requestRepertorioHolder request, AnswerStructHolder response) {
-        Answer answer = Method.repertorio(request.value.minimum);
+    void repertorio(requestRepertorio request, AnswerStructHolder response) {
+        Answer answer = Method.repertorio(request.minimum);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
         aux_response.error = answer.getError();
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void juega(requestJuegaHolder request, AnswerStructHolder response) {
-        Answer answer = Method.juega(request.value.alias, request.value.code);
+    void juega(requestJuega request, AnswerStructHolder response) {
+        Answer answer = Method.juega(request.alias, request.code);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
         aux_response.error = answer.getError();
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void lista(requestListaHolder request, AnswerStructHolder response) {
-        Answer answer = Method.lista(request.value.code);
+    void termina(requestTermina request, AnswerStructHolder response) {
+        Answer answer = Method.termina(request.alias, request.code);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
         aux_response.error = answer.getError();
         aux_response.server_error = answer.getServer_error();
         response.value = aux_response;
     }
-    void termina(requestTerminaHolder request, AnswerStructHolder response) {
-        Answer answer = Method.termina(request.value.alias, request.value.code);
+    void lista(requestLista request, AnswerStructHolder response) {
+        Answer answer = Method.lista(request.code);
         AnswerStruct aux_response = new AnswerStruct();
         aux_response.answer = answer.getAnswer();
         aux_response.error = answer.getError();
