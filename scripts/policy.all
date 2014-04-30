@@ -1,0 +1,4 @@
+// Ojo, sólo para pruebas!!!!!
+grant {
+    permission java.security.AllPermission;
+};
