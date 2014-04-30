@@ -33,10 +33,6 @@ final public class Server {
 
             theORB.run();
 
-        } catch(java.io.IOException ex) {
-            System.err.println("Servidor de Eco: no puedo escribir en ‘" +
-                    ex.getMessage() + "’");
-            return 1;
         } catch (org.omg.CORBA.SystemException ex) {
             ex.printStackTrace();
             throw new RuntimeException();
