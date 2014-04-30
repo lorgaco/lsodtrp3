@@ -4,8 +4,8 @@
 module Interface_lsodtrp3 {
 
     struct AnswerStruct{
-	    short error;
-	    short server_error;
+	    long error;
+	    long server_error;
 	    string answer;
 	};
 
