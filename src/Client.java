@@ -250,10 +250,15 @@ public class Client {
         }
         else{
             try {
-                if(args.length>2) {
+                if(args.length>4) {
                     if(args[1].equals("-k") || args[1].equals("-K")) {
                         Key=args[2];
                         System.out.println("Admin key: " + Key);
+                        String[3] args_aux;
+                        args_aux[0] = args[0];
+                        args_aux[1] = args[3];
+                        args_aux[2] = args[4];
+                        args = args_aux;
                     }
                 }
                 try {
@@ -263,6 +268,8 @@ public class Client {
                             "com.ooc.CORBA.ORBSingleton");
 
                     org.omg.CORBA.ORB theORB = org.omg.CORBA.ORB.init(args, props);
+
+                    System.out.println("Entrando");
                     run(theORB, args);
 
                     if(theORB != null) theORB.destroy();

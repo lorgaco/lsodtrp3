@@ -31,6 +31,8 @@ final public class Server {
             NameComponent name[] = { nc };
             inicContext.rebind(name, coServant);
 
+            System.out.println("Servidor registrado");
+
             theORB.run();
 
         } catch (org.omg.CORBA.SystemException ex) {
@@ -67,7 +69,7 @@ final public class Server {
                     props.put("org.omg.CORBA.ORBSingletonClass",
                             "com.ooc.CORBA.ORBSingleton");
                     org.omg.CORBA.ORB theORB = org.omg.CORBA.ORB.init(args, props);
-
+                    System.out.println("Entrando");
                     run(theORB);
 
                     if(theORB != null) theORB.destroy();
@@ -75,7 +77,6 @@ final public class Server {
                 } catch(Exception ex) {
                     ex.printStackTrace();
                 }
-                System.out.println("Servidor listo.");
             } catch (Exception e) {
                 System.out.println("Excepción: " + e.getMessage());
                 e.printStackTrace();
