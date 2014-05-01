@@ -53,7 +53,7 @@ public class Client {
                                 request.key_client = Key;
                                 System.out.println("request.designation: " + request.designation + " / designation: " + designation);
                                 System.out.println("request.maximum: " + request.maximum + " / maximum: " + maximum);
-                                System.out.println("request.key_client: " + request.key_client + " / Key: " + Key)
+                                System.out.println("request.key_client: " + request.key_client + " / Key: " + Key);
                                 AnswerStructHolder response = new AnswerStructHolder();
                                 Interface.nuevo(request, response);
                                 int iError = response.value.error;
