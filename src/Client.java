@@ -259,7 +259,7 @@ public class Client {
                 System.out.println("args: " + args[2]);
                 System.out.println("args: " + args[3]);
                 if(args.length>=4) {
-                    if(args[1].equals("-k") || args[1].equals("-K")) {
+                    if(args[0].equals("-k") || args[0].equals("-K")) {
                         Key=args[2];
                         System.out.println("Admin key: " + Key);
                         String[] args_aux = new String[3];
