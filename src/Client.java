@@ -253,20 +253,14 @@ public class Client {
         }
         else{
             try {
-                System.out.println("args length: " + args.length);
-                System.out.println("args: " + args[0]);
-                System.out.println("args: " + args[1]);
-                System.out.println("args: " + args[2]);
-                System.out.println("args: " + args[3]);
                 if(args.length>=4) {
                     if(args[0].equals("-k") || args[0].equals("-K")) {
-                        Key=args[2];
+                        Key=args[1];
                         System.out.println("Admin key: " + Key);
-                        String[] args_aux = new String[3];
-                        args_aux[0] = args[0];
+                        String[] args_aux = new String[2];
+                        args_aux[0] = args[2];
                         args_aux[1] = args[3];
-                        args_aux[2] = args[4];
-                        args = new String[3];
+                        args = new String[2];
                         args = args_aux;
                     }
                 }
