@@ -56,15 +56,14 @@ final public class Server {
         }
         else{
             try {
-                if(args.length>2) {
-                    if(args[1].equals("-k") || args[1].equals("-K")) {
-                        Key=args[2];
+                if(args.length>=4) {
+                    if(args[0].equals("-k") || args[0].equals("-K")) {
+                        Key=args[1];
                         System.out.println("Admin key: " + Key);
-                        String[] args_aux = new String[3];
-                        args_aux[0] = args[0];
+                        String[] args_aux = new String[2];
+                        args_aux[0] = args[2];
                         args_aux[1] = args[3];
-                        args_aux[2] = args[4];
-                        args = new String[3];
+                        args = new String[2];
                         args = args_aux;
                     }
                 }
