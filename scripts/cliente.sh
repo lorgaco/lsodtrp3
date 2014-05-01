@@ -12,5 +12,12 @@ exit(-1)
 endif
 setenv CLASSPATH /opt/orbacus/lib/OB.jar:/opt/orbacus/lib/OBEvent.jar:/opt/orbacus/lib/OBNaming.jar:/opt/orbacus/lib/OBProperty.jar:/opt/orbacus/lib/OBTest.jar:/opt/orbacus/lib/OBUtil.jar:clases
 setenv BOOTCLASSPATH -Xbootclasspath/p:$CLASSPATH
-java $BOOTCLASSPATH lsodtr.Client -k 1234 < ${2} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
-
+if ($#argv == 1)
+    java $BOOTCLASSPATH lsodtr.Client -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+endif
+if ($#argv == 2)
+    java $BOOTCLASSPATH lsodtr.Client -k ${2} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+endif
+if ($#argv == 2)
+    java $BOOTCLASSPATH lsodtr.Client -k ${2} < ${3} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+endif
