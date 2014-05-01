@@ -58,8 +58,14 @@ final public class Server {
             try {
                 if(args.length>2) {
                     if(args[1].equals("-k") || args[1].equals("-K")) {
-                        Key = args[2];
+                        Key=args[2];
                         System.out.println("Admin key: " + Key);
+                        String[] args_aux = new String[3];
+                        args_aux[0] = args[0];
+                        args_aux[1] = args[3];
+                        args_aux[2] = args[4];
+                        args = new String[3];
+                        args = args_aux;
                     }
                 }
 
