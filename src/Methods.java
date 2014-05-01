@@ -23,7 +23,6 @@ public class Methods {
 			answer.setError(Data.OK);
 			return answer;
 		} else {
-			answer.setAnswer(null);
 			answer.setError(Data.ALREADY_EXISTS);
 			return answer;
 		}
@@ -36,12 +35,10 @@ public class Methods {
 		for (ii=0; ii<juegos.size(); ii++) {
 			if(juegos.get(ii).startsWith(Integer.toString(code))){
 				juegos.remove(ii);
-				answer.setAnswer(null);
 				answer.setError(Data.OK);
 				return answer;
 			}
 		}
-		answer.setAnswer(null);
 		answer.setError(Data.DOESNT_EXIST);
 		return answer;
 	}
@@ -53,11 +50,9 @@ public class Methods {
 			String contenido = name + " : " + alias;
 			System.out.println(contenido);
 			escribir2(contenido, jugadores);
-			answer.setAnswer(null);
 			answer.setError(Data.OK);
 			return answer;
 		} else {
-			answer.setAnswer(null);
 			answer.setError(Data.ALREADY_EXISTS);
 			return answer;
 		}
@@ -137,24 +132,20 @@ public class Methods {
 					//System.out.println("ENTRA 3");
 					escribir2(contenido, playing);
 					printhelp(playing);
-					answer.setAnswer(null);
 					answer.setError(Data.OK);
 					return answer;
 					//return Data.OK;
 				} else {
-					answer.setAnswer(null);
 					answer.setError(Data.MAX_ACHIEVED);
 					return answer;
 					//return Data.MAX_ACHIEVED;
 				}
 			} else {
-				answer.setAnswer(null);
 				answer.setError(Data.OK);
 				return answer;
 				//return Data.OK;
 			}
 		} else {
-			answer.setAnswer(null);
 			answer.setError(Data.DOESNT_EXIST);
 			return answer;
 			//return Data.DOESNT_EXIST;
@@ -170,16 +161,13 @@ public class Methods {
 			if(buscar2(contenido, playing)) {
 				playing.remove(playing.indexOf(contenido));
 				printhelp(playing);
-				answer.setAnswer(null);
 				answer.setError(Data.OK);
 				return answer;
 			} else {
-				answer.setAnswer(null);
 				answer.setError(Data.DOESNT_EXIST);
 				return answer;
 			}
 		} else {
-			answer.setAnswer(null);
 			answer.setError(Data.DOESNT_EXIST);
 			return answer;
 		}
@@ -208,7 +196,6 @@ public class Methods {
 			answer.setError(Data.OK);
 			return answer;
 		} else {
-			answer.setAnswer(null);
 			answer.setError(Data.DOESNT_EXIST);
 			return answer;
 		}
