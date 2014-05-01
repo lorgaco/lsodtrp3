@@ -50,25 +50,29 @@ public class Client {
                                     }
                                     if(designation.length() > 30) System.err.println("FORMAT ERROR > 30 characters");
                                     else {
-                                        int maximum = Integer.parseInt(strComand[strComand.length-1]);
-                                        requestNuevo request = new requestNuevo();
-                                        request.designation = designation;
-                                        request.maximum = maximum;
-                                        request.key_client = Key;
-                                        System.out.println("request.designation: " + request.designation + " / designation: " + designation);
-                                        System.out.println("request.maximum: " + request.maximum + " / maximum: " + maximum);
-                                        System.out.println("request.key_client: " + request.key_client + " / Key: " + Key);
-                                        AnswerStructHolder response = new AnswerStructHolder();
-                                        Interface.nuevo(request, response);
-                                        int iError = response.value.error;
-                                        int iServerError = response.value.server_error;
-                                        String sResponse = response.value.answer;
-                                        if(iError!=Data.OK  || iServerError!=Data.OK) {
-                                            System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                            System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                        }
-                                        else {
-                                            System.out.println("Juego creado con id " + sResponse);
+                                        try {
+                                            int maximum = Integer.parseInt(strComand[strComand.length-1]);
+                                            requestNuevo request = new requestNuevo();
+                                            request.designation = designation;
+                                            request.maximum = maximum;
+                                            request.key_client = Key;
+                                            System.out.println("request.designation: " + request.designation + " / designation: " + designation);
+                                            System.out.println("request.maximum: " + request.maximum + " / maximum: " + maximum);
+                                            System.out.println("request.key_client: " + request.key_client + " / Key: " + Key);
+                                            AnswerStructHolder response = new AnswerStructHolder();
+                                            Interface.nuevo(request, response);
+                                            int iError = response.value.error;
+                                            int iServerError = response.value.server_error;
+                                            String sResponse = response.value.answer;
+                                            if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                                System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                                System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                            }
+                                            else {
+                                                System.out.println("Juego creado con id " + sResponse);
+                                            }
+                                        } catch (Exception e) {
+                                            System.err.println("FORMAT ERROR: " + e.getMessage());
                                         }
                                     }
                                 }
@@ -79,20 +83,24 @@ public class Client {
                             else {
                                 if(strComand.length<2) System.err.println("Not enough arguments");
                                 else{
-                                    short code = Short.parseShort(strComand[1].toString());
-                                    requestQuita request = new requestQuita();
-                                    request.code = code;
-                                    request.key_client = Key;
-                                    AnswerStructHolder response = new AnswerStructHolder();
-                                    Interface.quita(request, response);
-                                    int iError = response.value.error;
-                                    int iServerError = response.value.server_error;
-                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
-                                        System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                    }
-                                    else {
-                                        System.out.println("Juego eliminado");
+                                    try {
+                                        short code = Short.parseShort(strComand[1].toString());
+                                        requestQuita request = new requestQuita();
+                                        request.code = code;
+                                        request.key_client = Key;
+                                        AnswerStructHolder response = new AnswerStructHolder();
+                                        Interface.quita(request, response);
+                                        int iError = response.value.error;
+                                        int iServerError = response.value.server_error;
+                                        if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                            System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                            System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                        }
+                                        else {
+                                            System.out.println("Juego eliminado");
+                                        }
+                                    } catch (Exception e) {
+                                        System.err.println("FORMAT ERROR: " + e.getMessage());
                                     }
                                 }
                             }
@@ -127,110 +135,130 @@ public class Client {
                         else if(method.equals("PLANTILLA")){
                             if(Key == null) System.out.println("No Key provided. This operation can only be done by Admin");
                             else{
-                                requestPlantilla request = new requestPlantilla();
-                                request.key_client = Key;
-                                AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.plantilla(request, response);
-                                int iError = response.value.error;
-                                int iServerError = response.value.server_error;
-                                String sResponse = response.value.answer;
-                                if(iError!=Data.OK  || iServerError!=Data.OK) {
-                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                }
-                                else {
-                                    String[] aResponse = sResponse.split("(, )|\\]|\\[");
-                                    for(int ii=0; ii<aResponse.length; ii++){
-                                        System.out.println(aResponse[ii]);
+                                try {
+                                    requestPlantilla request = new requestPlantilla();
+                                    request.key_client = Key;
+                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    Interface.plantilla(request, response);
+                                    int iError = response.value.error;
+                                    int iServerError = response.value.server_error;
+                                    String sResponse = response.value.answer;
+                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                        System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
                                     }
+                                    else {
+                                        String[] aResponse = sResponse.split("(, )|\\]|\\[");
+                                        for(int ii=0; ii<aResponse.length; ii++){
+                                            System.out.println(aResponse[ii]);
+                                        }
+                                    }
+                                } catch (Exception e) {
+                                    System.err.println("FORMAT ERROR: " + e.getMessage());
                                 }
                             }
                         }
                         else if(method.equals("REPERTORIO")){
                             if(strComand.length<2) System.err.println("Not enough arguments");
                             else{
-                                byte minimum = Byte.parseByte(strComand[1].toString());
-                                requestRepertorio request = new requestRepertorio();
-                                request.minimum = minimum;
-                                AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.repertorio(request, response);
-                                int iError = response.value.error;
-                                int iServerError = response.value.server_error;
-                                String sResponse = response.value.answer;
-                                if(iError!=Data.OK  || iServerError!=Data.OK) {
-                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                }
-                                else {
-                                    String[] aResponse = sResponse.split("(, )|\\]|\\[");
-                                    for(int ii=0; ii<aResponse.length; ii++){
-                                        System.out.println(aResponse[ii]);
+                                try {
+                                    byte minimum = Byte.parseByte(strComand[1].toString());
+                                    requestRepertorio request = new requestRepertorio();
+                                    request.minimum = minimum;
+                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    Interface.repertorio(request, response);
+                                    int iError = response.value.error;
+                                    int iServerError = response.value.server_error;
+                                    String sResponse = response.value.answer;
+                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                        System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
                                     }
+                                    else {
+                                        String[] aResponse = sResponse.split("(, )|\\]|\\[");
+                                        for(int ii=0; ii<aResponse.length; ii++){
+                                            System.out.println(aResponse[ii]);
+                                        }
+                                    }
+                                } catch (Exception e) {
+                                    System.err.println("FORMAT ERROR: " + e.getMessage());
                                 }
                             }
                         }
                         else if(method.equals("JUEGA")){
                             if(strComand.length<3) System.err.println("Not enough arguments");
                             else{
-                                String alias = strComand[1].toString();
-                                short code = Short.parseShort(strComand[2].toString());
-                                requestJuega request = new requestJuega();
-                                request.alias = alias;
-                                request.code = code;
-                                AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.juega(request, response);
-                                int iError = response.value.error;
-                                int iServerError = response.value.server_error;
-                                if(iError!=Data.OK  || iServerError!=Data.OK) {
-                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                }
-                                else {
-                                    System.out.println("jugando");
+                                try {
+                                    String alias = strComand[1].toString();
+                                    short code = Short.parseShort(strComand[2].toString());
+                                    requestJuega request = new requestJuega();
+                                    request.alias = alias;
+                                    request.code = code;
+                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    Interface.juega(request, response);
+                                    int iError = response.value.error;
+                                    int iServerError = response.value.server_error;
+                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                        System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                    }
+                                    else {
+                                        System.out.println("jugando");
+                                    }
+                                } catch (Exception e) {
+                                    System.err.println("FORMAT ERROR: " + e.getMessage());
                                 }
                             }
                         }
                         else if(method.equals("TERMINA")){
                             if(strComand.length<3) System.err.println("Not enough arguments");
                             else{
-                                String alias = strComand[1].toString();
-                                short code = Short.parseShort(strComand[2].toString());
-                                requestTermina request = new requestTermina();
-                                request.alias = alias;
-                                request.code = code;
-                                AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.termina(request, response);
-                                int iError = response.value.error;
-                                int iServerError = response.value.server_error;
-                                if(iError!=Data.OK  || iServerError!=Data.OK) {
-                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                }
-                                else {
-                                    System.out.println("Desconectado");
+                                try {
+                                    String alias = strComand[1].toString();
+                                    short code = Short.parseShort(strComand[2].toString());
+                                    requestTermina request = new requestTermina();
+                                    request.alias = alias;
+                                    request.code = code;
+                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    Interface.termina(request, response);
+                                    int iError = response.value.error;
+                                    int iServerError = response.value.server_error;
+                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                        System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                    }
+                                    else {
+                                        System.out.println("Desconectado");
+                                    }
+                                } catch (Exception e) {
+                                    System.err.println("FORMAT ERROR: " + e.getMessage());
                                 }
                             }
                         }
                         else if(method.equals("LISTA")){
                             if(strComand.length<2) System.err.println("Not enough arguments");
                             else{
-                                short code = Short.parseShort(strComand[1].toString());
-                                requestLista request = new requestLista();
-                                request.code = code;
-                                AnswerStructHolder response = new AnswerStructHolder();
-                                Interface.lista(request, response);
-                                int iError = response.value.error;
-                                int iServerError = response.value.server_error;
-                                String sResponse = response.value.answer;
-                                if(iError!=Data.OK  || iServerError!=Data.OK) {
-                                    System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                    System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                }
-                                else {
-                                    String[] aResponse = sResponse.split("(, )|\\]|\\[");
-                                    for(int ii=0; ii<aResponse.length; ii++){
-                                        System.out.println(aResponse[ii]);
+                                try {
+                                    short code = Short.parseShort(strComand[1].toString());
+                                    requestLista request = new requestLista();
+                                    request.code = code;
+                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    Interface.lista(request, response);
+                                    int iError = response.value.error;
+                                    int iServerError = response.value.server_error;
+                                    String sResponse = response.value.answer;
+                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                        System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
                                     }
+                                    else {
+                                        String[] aResponse = sResponse.split("(, )|\\]|\\[");
+                                        for(int ii=0; ii<aResponse.length; ii++){
+                                            System.out.println(aResponse[ii]);
+                                        }
+                                    }
+                                } catch (Exception e) {
+                                    System.err.println("FORMAT ERROR: " + e.getMessage());
                                 }
                             }
                         }
