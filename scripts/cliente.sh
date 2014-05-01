@@ -13,15 +13,15 @@ endif
 setenv CLASSPATH /opt/orbacus/lib/OB.jar:/opt/orbacus/lib/OBEvent.jar:/opt/orbacus/lib/OBNaming.jar:/opt/orbacus/lib/OBProperty.jar:/opt/orbacus/lib/OBTest.jar:/opt/orbacus/lib/OBUtil.jar:clases
 setenv BOOTCLASSPATH -Xbootclasspath/p:$CLASSPATH
 if ($#argv == 1) then
-    java $BOOTCLASSPATH lsodtr.Client -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+    java $BOOTCLASSPATH lsodtr.Client -ORBInitRef NameService=corbaloc:iiop:${1}:4005/NameService
 endif
 if ($#argv == 2) then
-    java $BOOTCLASSPATH lsodtr.Client -k ${2} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+    java $BOOTCLASSPATH lsodtr.Client -k ${2} -ORBInitRef NameService=corbaloc:iiop:${1}:4005/NameService
 endif
 if ($#argv == 3) then
     if (${2} == -nk) then
-        java $BOOTCLASSPATH lsodtr.Client < ${3} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+        java $BOOTCLASSPATH lsodtr.Client < ${3} -ORBInitRef NameService=corbaloc:iiop:${1}:4005/NameService
     else
-        java $BOOTCLASSPATH lsodtr.Client -k ${2} < ${3} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+        java $BOOTCLASSPATH lsodtr.Client -k ${2} < ${3} -ORBInitRef NameService=corbaloc:iiop:${1}:4005/NameService
     endif
 endif

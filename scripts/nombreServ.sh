@@ -6,4 +6,4 @@
 # nameserv -IIOPport 4000
 setenv CLASSPATH /opt/orbacus/lib/OB.jar:/opt/orbacus/lib/OBNaming.jar
 setenv BOOTCLASSPATH -Xbootclasspath/p:$CLASSPATH
-java $BOOTCLASSPATH com.ooc.CosNaming.Server -IIOPport 4000
+java $BOOTCLASSPATH com.ooc.CosNaming.Server -IIOPport 4005
