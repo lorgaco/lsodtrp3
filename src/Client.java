@@ -115,19 +115,21 @@ public class Client {
                                 if(name.length() > 48) System.err.println("FORMAT ERROR > 48 characters");
                                 else {
                                     String alias = strComand[strComand.length-1].toString();
-                                    requestInscribe request = new requestInscribe();
-                                    request.name = name;
-                                    request.alias = alias;
-                                    AnswerStructHolder response = new AnswerStructHolder();
-                                    Interface.inscribe(request, response);
-                                    int iError = response.value.error;
-                                    int iServerError = response.value.server_error;
-                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
-                                        System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                    }
+                                    if(alias.length() > 8) System.err.println("FORMAT ERROR > 8 characters");
                                     else {
-                                        System.out.println("Inscrito");
+                                        requestInscribe request = new requestInscribe();
+                                        request.name = name;
+                                        request.alias = alias;
+                                        AnswerStructHolder response = new AnswerStructHolder();
+                                        Interface.inscribe(request, response);
+                                        int iError = response.value.error;
+                                        int iServerError = response.value.server_error;
+                                        if (iError != Data.OK || iServerError != Data.OK) {
+                                            System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
+                                            System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                        } else {
+                                            System.out.println("Inscrito");
+                                        }
                                     }
                                 }
                             }

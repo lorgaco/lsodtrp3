@@ -18,6 +18,10 @@ endif
 if ($#argv == 2) then
     java $BOOTCLASSPATH lsodtr.Client -k ${2} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
 endif
-if ($#argv == 2) then
-    java $BOOTCLASSPATH lsodtr.Client -k ${2} < ${3} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+if ($#argv == 3) then
+    if (${2} == -nk) then
+        java $BOOTCLASSPATH lsodtr.Client < ${3} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+    else
+        java $BOOTCLASSPATH lsodtr.Client -k ${2} -ORBInitRef NameService=corbaloc:iiop:${1}:4000/NameService
+    endif
 endif

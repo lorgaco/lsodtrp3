@@ -36,21 +36,14 @@ public class ServantCORBA extends lsodtrp3POA {
     }
     public void quita(requestQuita request, AnswerStructHolder response) {
         if(request.key_client.equals(key_server)) {
-            System.out.println("if quita key correct");
             Answer answer = Method.quita(request.code);
-            System.out.println("returned");
             AnswerStruct aux_response = new AnswerStruct();
-            System.out.println("answer: " + answer.getAnswer());
             aux_response.answer = answer.getAnswer();
-            System.out.println("error: " + answer.getError());
             aux_response.error = answer.getError();
-            System.out.println("server_error " + answer.getServer_error());
             aux_response.server_error = answer.getServer_error();
-            System.out.println("value");
             response.value = aux_response;
         }
         else {
-            System.out.println("else quita key incorrect");
             AnswerStruct aux_response = new AnswerStruct();
             aux_response.answer = "";
             aux_response.error = Data.OK;
