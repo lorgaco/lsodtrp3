@@ -40,11 +40,11 @@ public class ServantCORBA extends lsodtrp3POA {
             Answer answer = Method.quita(request.code);
             System.out.println("returned");
             AnswerStruct aux_response = new AnswerStruct();
-            System.out.println("answer");
+            System.out.println("answer: " + answer.getAnswer());
             aux_response.answer = answer.getAnswer();
-            System.out.println("error");
+            System.out.println("error: " + answer.getError());
             aux_response.error = answer.getError();
-            System.out.println("server_error");
+            System.out.println("server_error " + answer.getServer_error());
             aux_response.server_error = answer.getServer_error();
             System.out.println("value");
             response.value = aux_response;
