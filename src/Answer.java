@@ -60,7 +60,7 @@ public class Answer implements Serializable{
 		super();
 		this.error = 1;
 		this.server_error = 0;
-		this.answer = null;
+		this.answer = "";
 	}
 	
 	
