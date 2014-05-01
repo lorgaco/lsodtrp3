@@ -254,6 +254,8 @@ public class Client {
         else{
             try {
                 System.out.println("args length: " + args.length);
+                System.out.println("args: " + args[0]);
+                System.out.println("args: " + args[1]);
                 if(args.length>4) {
                     if(args[1].equals("-k") || args[1].equals("-K")) {
                         Key=args[2];
