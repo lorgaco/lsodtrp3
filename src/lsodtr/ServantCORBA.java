@@ -68,8 +68,10 @@ public class ServantCORBA extends lsodtrp3POA {
             ListIterator<Jugador> it = out.listIterator();
             for(int ii=0; ii<out.size(); ii++) {
                 Jugador player = it.next();
-                aux_response.answer[ii].alias = player.alias;
-                aux_response.answer[ii].alias = player.name;
+                JugadorStruct playerStruct = new JugadorStruct();
+                playerStruct.alias = player.alias;
+                playerStruct.alias = player.name;
+                aux_response.answer[ii] = playerStruct;
             }
 
             response.value = aux_response;
@@ -123,8 +125,10 @@ public class ServantCORBA extends lsodtrp3POA {
         ListIterator<Jugador> it = out.lista.listIterator();
         for(int ii=0; ii<out.lista.size(); ii++) {
             Jugador player = it.next();
-            aux_response.answer.lista[ii].alias = player.alias;
-            aux_response.answer.lista[ii].alias = player.name;
+            JugadorStruct playerStruct = new JugadorStruct();
+            playerStruct.alias = player.alias;
+            playerStruct.alias = player.name;
+            aux_response.answer.lista[ii] = playerStruct;
         }
 
         response.value = aux_response;

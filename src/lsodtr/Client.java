@@ -44,6 +44,7 @@ public class Client {
                     else{
                         String method = Data.PromptToMethod(strComand[0].toString());
                         if(method.equals("NUEVO")){
+                            System.out.println("NUEVO");
                             if(Key == null) System.out.println("No Key provided. This operation can only be done by Admin");
                             else {
                                 if(strComand.length<3) System.err.println("Not enough arguments");
@@ -83,6 +84,7 @@ public class Client {
                             }
                         }
                         else if(method.equals("QUITA")){
+                            System.out.println("QUITA");
                             if(Key == null) System.out.println("No Key provided. This operation can only be done by Admin");
                             else {
                                 if(strComand.length<2) System.err.println("Not enough arguments");
@@ -112,6 +114,7 @@ public class Client {
                             }
                         }
                         else if(method.equals("INSCRIBE")){
+                            System.out.println("INSCRIBE");
                             if(strComand.length<3) System.err.println("Not enough arguments");
                             else{
                                 String name = strComand[1].toString();
@@ -143,6 +146,7 @@ public class Client {
                             }
                         }
                         else if(method.equals("PLANTILLA")){
+                            System.out.println("PLANTILLA");
                             if(Key == null) System.out.println("No Key provided. This operation can only be done by Admin");
                             else{
                                 try {
@@ -178,6 +182,7 @@ public class Client {
                             }
                         }
                         else if(method.equals("REPERTORIO")){
+                            System.out.println("REPERTORIO");
                             if(strComand.length<2) System.err.println("Not enough arguments");
                             else{
                                 try {
@@ -215,6 +220,7 @@ public class Client {
                             }
                         }
                         else if(method.equals("JUEGA")){
+                            System.out.println("JUEGA");
                             if(strComand.length<3) System.err.println("Not enough arguments");
                             else{
                                 try {
@@ -241,6 +247,7 @@ public class Client {
                             }
                         }
                         else if(method.equals("TERMINA")){
+                            System.out.println("TERMINA");
                             if(strComand.length<3) System.err.println("Not enough arguments");
                             else{
                                 try {
@@ -266,6 +273,7 @@ public class Client {
                             }
                         }
                         else if(method.equals("LISTA")){
+                            System.out.println("LISTA");
                             if(strComand.length<2) System.err.println("Not enough arguments");
                             else{
                                 try {

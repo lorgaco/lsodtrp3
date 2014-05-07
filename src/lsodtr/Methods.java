@@ -34,7 +34,7 @@ public class Methods {
             juegos.remove(index);
             return Data.OK;
         } else {
-            return Data.ALREADY_EXISTS;
+            return Data.DOESNT_EXIST;
         }
     }
 
