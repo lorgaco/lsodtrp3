@@ -5,6 +5,10 @@ package lsodtr;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 import org.omg.CosNaming.*;
 
 public class Client {
@@ -52,21 +56,24 @@ public class Client {
                                     else {
                                         try {
                                             int maximum = Integer.parseInt(strComand[strComand.length-1]);
+                                            //==stub====
                                             requestNuevo request = new requestNuevo();
                                             request.designation = designation;
                                             request.maximum = maximum;
                                             request.key_client = Key;
-                                            AnswerStructHolder response = new AnswerStructHolder();
+                                            responseNuevoHolder response = new responseNuevoHolder();
                                             Interface.nuevo(request, response);
-                                            int iError = response.value.error;
                                             int iServerError = response.value.server_error;
-                                            String sResponse = response.value.answer;
-                                            if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                            sNuevo resultado = new sNuevo();
+                                            resultado.code = response.value.answer.code;
+                                            resultado.error = response.value.answer.error;
+                                            //==stub====
+                                            if(resultado.error!=Data.OK  || iServerError!=Data.OK) {
                                                 System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                                System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                                System.err.println("METHOD ERROR: " + Data.ErrorToString(resultado.error));
                                             }
                                             else {
-                                                System.out.println("Juego creado con id " + sResponse);
+                                                System.out.println("Juego creado con id " + resultado.code);
                                             }
                                         } catch (Exception e) {
                                             System.err.println("FORMAT ERROR: " + e.getMessage());
@@ -82,16 +89,18 @@ public class Client {
                                 else{
                                     try {
                                         short code = Short.parseShort(strComand[1].toString());
+                                        //==stub====
                                         requestQuita request = new requestQuita();
                                         request.code = code;
                                         request.key_client = Key;
-                                        AnswerStructHolder response = new AnswerStructHolder();
+                                        responseIntHolder response = new responseIntHolder();
                                         Interface.quita(request, response);
-                                        int iError = response.value.error;
                                         int iServerError = response.value.server_error;
-                                        if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                        int resultado = response.value.server_error;
+                                        //==stub====
+                                        if(resultado!=Data.OK  || iServerError!=Data.OK) {
                                             System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                            System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                            System.err.println("METHOD ERROR: " + Data.ErrorToString(resultado));
                                         }
                                         else {
                                             System.out.println("Juego eliminado");
@@ -114,16 +123,18 @@ public class Client {
                                     String alias = strComand[strComand.length-1].toString();
                                     if(alias.length() > 8) System.err.println("FORMAT ERROR > 8 characters");
                                     else {
+                                        //==stub====
                                         requestInscribe request = new requestInscribe();
                                         request.name = name;
                                         request.alias = alias;
-                                        AnswerStructHolder response = new AnswerStructHolder();
+                                        responseIntHolder response = new responseIntHolder();
                                         Interface.inscribe(request, response);
-                                        int iError = response.value.error;
                                         int iServerError = response.value.server_error;
-                                        if (iError != Data.OK || iServerError != Data.OK) {
+                                        int resultado = response.value.server_error;
+                                        //==stub====
+                                        if (resultado != Data.OK || iServerError != Data.OK) {
                                             System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                            System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                            System.err.println("METHOD ERROR: " + Data.ErrorToString(resultado));
                                         } else {
                                             System.out.println("Inscrito");
                                         }
@@ -135,21 +146,30 @@ public class Client {
                             if(Key == null) System.out.println("No Key provided. This operation can only be done by Admin");
                             else{
                                 try {
+                                    //==stub====
                                     requestPlantilla request = new requestPlantilla();
                                     request.key_client = Key;
-                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    responsePlantillaHolder response = new responsePlantillaHolder();
                                     Interface.plantilla(request, response);
-                                    int iError = response.value.error;
                                     int iServerError = response.value.server_error;
-                                    String sResponse = response.value.answer;
-                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+
+                                    List<Jugador> resultado = new ArrayList<Jugador>();
+                                    for(int ii=0; ii<response.value.answer.length; ii++){
+                                        Jugador player = new Jugador();
+                                        player.alias = response.value.answer[ii].alias;
+                                        player.name = response.value.answer[ii].name;
+                                        resultado.add(player);
+                                    }
+
+                                    //==stub====
+                                    if(iServerError!=Data.OK) {
                                         System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
                                     }
                                     else {
-                                        String[] aResponse = sResponse.split("(, )|\\]|\\[");
-                                        for(int ii=0; ii<aResponse.length; ii++){
-                                            System.out.println(aResponse[ii]);
+                                        ListIterator<Jugador> it = resultado.listIterator();
+                                        for(int ii=0; ii<resultado.size(); ii++) {
+                                            Jugador player = it.next();
+                                            System.out.println(player.name + " (" + player.alias + ").");
                                         }
                                     }
                                 } catch (Exception e) {
@@ -162,21 +182,31 @@ public class Client {
                             else{
                                 try {
                                     byte minimum = Byte.parseByte(strComand[1].toString());
+                                    //==stub====
                                     requestRepertorio request = new requestRepertorio();
                                     request.minimum = minimum;
-                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    responseRepertorioHolder response = new responseRepertorioHolder();
                                     Interface.repertorio(request, response);
-                                    int iError = response.value.error;
                                     int iServerError = response.value.server_error;
-                                    String sResponse = response.value.answer;
-                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+
+                                    List<Juego> resultado = new ArrayList<Juego>();
+                                    for(int ii=0; ii<response.value.answer.length; ii++){
+                                        Juego game = new Juego();
+                                        game.code = response.value.answer[ii].code;
+                                        game.designation = response.value.answer[ii].designation;
+                                        game.maximum = response.value.answer[ii].maximum;
+                                        resultado.add(game);
+                                    }
+
+                                    //==stub====
+                                    if(iServerError!=Data.OK) {
                                         System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
                                     }
                                     else {
-                                        String[] aResponse = sResponse.split("(, )|\\]|\\[");
-                                        for(int ii=0; ii<aResponse.length; ii++){
-                                            System.out.println(aResponse[ii]);
+                                        ListIterator<Juego> it = resultado.listIterator();
+                                        for(int ii=0; ii<resultado.size(); ii++) {
+                                            Juego game = it.next();
+                                            System.out.println(game.designation + " (" + game.code + "): Max=" + game.maximum + ".");
                                         }
                                     }
                                 } catch (Exception e) {
@@ -190,18 +220,19 @@ public class Client {
                                 try {
                                     String alias = strComand[1].toString();
                                     short code = Short.parseShort(strComand[2].toString());
+                                    //==stub====
                                     requestJuega request = new requestJuega();
                                     request.alias = alias;
                                     request.code = code;
-                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    responseIntHolder response = new responseIntHolder();
                                     Interface.juega(request, response);
-                                    int iError = response.value.error;
                                     int iServerError = response.value.server_error;
-                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    int resultado = response.value.server_error;
+                                    //==stub====
+                                    if (resultado != Data.OK || iServerError != Data.OK) {
                                         System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                    }
-                                    else {
+                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(resultado));
+                                    } else {
                                         System.out.println("jugando");
                                     }
                                 } catch (Exception e) {
@@ -218,15 +249,15 @@ public class Client {
                                     requestTermina request = new requestTermina();
                                     request.alias = alias;
                                     request.code = code;
-                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    responseIntHolder response = new responseIntHolder();
                                     Interface.termina(request, response);
-                                    int iError = response.value.error;
                                     int iServerError = response.value.server_error;
-                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    int resultado = response.value.server_error;
+                                    //==stub====
+                                    if (resultado != Data.OK || iServerError != Data.OK) {
                                         System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
-                                    }
-                                    else {
+                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(resultado));
+                                    } else {
                                         System.out.println("Desconectado");
                                     }
                                 } catch (Exception e) {
@@ -239,21 +270,34 @@ public class Client {
                             else{
                                 try {
                                     short code = Short.parseShort(strComand[1].toString());
+                                    //==stub====
                                     requestLista request = new requestLista();
                                     request.code = code;
-                                    AnswerStructHolder response = new AnswerStructHolder();
+                                    responseListaHolder response = new responseListaHolder();
                                     Interface.lista(request, response);
-                                    int iError = response.value.error;
                                     int iServerError = response.value.server_error;
-                                    String sResponse = response.value.answer;
-                                    if(iError!=Data.OK  || iServerError!=Data.OK) {
+                                    sLista resultado = new sLista();
+                                    resultado.error = response.value.answer.error;
+
+                                    List<Jugador> players = new ArrayList<Jugador>();
+                                    for(int ii=0; ii<response.value.answer.lista.length; ii++){
+                                        Jugador player = new Jugador();
+                                        player.alias = response.value.answer.lista[ii].alias;
+                                        player.name = response.value.answer.lista[ii].name;
+                                        players.add(player);
+                                    }
+                                    resultado.lista = players;
+
+                                    //==stub====
+                                    if(resultado.error!=Data.OK  || iServerError!=Data.OK) {
                                         System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
-                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(iError));
+                                        System.err.println("METHOD ERROR: " + Data.ErrorToString(resultado.error));
                                     }
                                     else {
-                                        String[] aResponse = sResponse.split("(, )|\\]|\\[");
-                                        for(int ii=0; ii<aResponse.length; ii++){
-                                            System.out.println(aResponse[ii]);
+                                        ListIterator<Jugador> it = resultado.lista.listIterator();
+                                        for(int ii=0; ii<resultado.lista.size(); ii++) {
+                                            Jugador player = it.next();
+                                            System.out.println(player.name + " (" + player.alias + ").");
                                         }
                                     }
                                 } catch (Exception e) {
