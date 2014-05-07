@@ -21,17 +21,19 @@ public class ServantCORBA extends lsodtrp3POA {
         if(request.key_client.equals(key_server)) {
             sNuevo out = Method.nuevo(request.designation, request.maximum);
             responseNuevo aux_response = new responseNuevo();
-            aux_response.answer = new sNuevoStruct();
-            aux_response.answer.code = out.code;
-            aux_response.answer.error = out.error;
+            sNuevoStruct answerStruct = new sNuevoStruct();
+            answerStruct.code = out.code;
+            answerStruct.error = out.error;
+            aux_response.answer = answerStruct;
             aux_response.server_error = Data.OK;
             response.value = aux_response;
         }
         else {
             responseNuevo aux_response = new responseNuevo();
-            aux_response.answer = new sNuevoStruct();
-            aux_response.answer.error = Data.SERVER_ERROR;
-            aux_response.answer.code = -1;
+            sNuevoStruct answerStruct = new sNuevoStruct();
+            answerStruct.error = Data.SERVER_ERROR;
+            answerStruct.code = -1;
+            aux_response.answer = answerStruct;
             aux_response.server_error = Data.AUTENTICATION_FAILED;
             response.value = aux_response;
         }
@@ -64,16 +66,16 @@ public class ServantCORBA extends lsodtrp3POA {
             responsePlantilla aux_response = new responsePlantilla();
             aux_response.server_error = Data.OK;
 
-            aux_response.answer = new JugadorStruct[out.size()];
+            JugadorStruct[] structArray = new JugadorStruct[out.size()];
             ListIterator<Jugador> it = out.listIterator();
             for(int ii=0; ii<out.size(); ii++) {
                 Jugador player = it.next();
                 JugadorStruct playerStruct = new JugadorStruct();
                 playerStruct.alias = player.alias;
                 playerStruct.alias = player.name;
-                aux_response.answer[ii] = playerStruct;
+                structArray[ii] = playerStruct;
             }
-
+            aux_response.answer = structArray;
             response.value = aux_response;
         }
         else {
@@ -119,18 +121,20 @@ public class ServantCORBA extends lsodtrp3POA {
         sLista out = Method.lista(request.code);
         responseLista aux_response = new responseLista();
         aux_response.server_error = Data.OK;
-        aux_response.answer = new sListaStruct();
-        aux_response.answer.error = out.error;
-        aux_response.answer.lista = new JugadorStruct[out.lista.size()];
+        sListaStruct answerStruct = new sListaStruct();
+        answerStruct.error = out.error;
+
+        JugadorStruct[] structArray = new JugadorStruct[out.lista.size()];
         ListIterator<Jugador> it = out.lista.listIterator();
         for(int ii=0; ii<out.lista.size(); ii++) {
             Jugador player = it.next();
             JugadorStruct playerStruct = new JugadorStruct();
             playerStruct.alias = player.alias;
             playerStruct.alias = player.name;
-            aux_response.answer.lista[ii] = playerStruct;
+            structArray[ii] = playerStruct;
         }
-
+        answerStruct.lista = structArray;
+        aux_response.answer = answerStruct;
         response.value = aux_response;
     }
 
