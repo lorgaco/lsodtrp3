@@ -1,14 +1,16 @@
-//package lsodtrp3;
-//import Interface_lsodtrp3.*;
 package lsodtr;
+
+import java.io.Serializable;
+import java.util.Comparator;
+import java.util.List;
 
 public class Data {
 	// socket and message parameters
 	public static final int PORT = 4005;
 	public static final int MAX_ARGUMENTS_SIZE = 8000;
 	public static final int MAX_MESSAGE_SIZE = MAX_ARGUMENTS_SIZE + 16; // 4 ints
-	public static final int SOCKET_TIMEOUT = 1000; // in milliseconds
-	public static final int SOCKET_RTX_PERIOD = 100; // in milliseconds
+	public static final int SOCKET_TIMEOUT = 50000; // in milliseconds
+	public static final int SOCKET_RTX_PERIOD = 2000; // in milliseconds
 	
 	// Local response codes
 	public static final int OK =0;
@@ -36,11 +38,6 @@ public class Data {
 	public static final int JUEGA = 6;
 	public static final int TERMINA = 7;
 	public static final int LISTA = 8;
-	
-	// File paths
-	public static final String PATH_JUEGOS = "/bd/juegos.txt";
-	public static final String PATH_JUGADORES = "/bd";
-	public static final String PATH_PLAYING = "";
 
 	public static String ErrorToString(int error){
 		switch(error) {
@@ -83,4 +80,40 @@ public class Data {
 			return "FINAL";
 		return "UNKNOWN";
 	}
+}
+
+class Juego implements Serializable {
+    short code;
+    String designation;
+    int maximum;
+    List<Jugador> Jugando;
+}
+
+class Jugador implements Serializable {
+    String name;
+    String alias;
+}
+
+class sNuevo implements Serializable {
+    short code;
+    int error;
+}
+
+class sLista implements Serializable {
+    List<Jugador> lista;
+    int error;
+}
+
+class gameComparator implements Comparator<Juego> {
+    @Override
+    public int compare(Juego o1, Juego o2) {
+        return o1.designation.compareTo(o2.designation);
+    }
+}
+
+class playerComparator implements Comparator<Jugador> {
+    @Override
+    public int compare(Jugador o1, Jugador o2) {
+        return o1.alias.compareTo(o2.alias);
+    }
 }

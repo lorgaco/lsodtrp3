@@ -1,0 +1,102 @@
+#ifndef Interface_IDL
+#define Interface_IDL
+
+module lsodtr {
+
+    struct JugadorStruct{
+        string name;
+        string alias;
+    }
+
+    struct JuegoStruct{
+        short code;
+        string designation;
+        long maximum;
+    }
+
+    struct sNuevoStruct{
+        long error;
+    	short code;
+    }
+
+    struct sListaStruct{
+        long error;
+        sequence <JugadorStruct> lista;
+    }
+
+    struct responseNuevo{
+	    long server_error;
+	    sNuevoStruct answer;
+	};
+
+	struct responseInt{
+        long server_error;
+        sNuevoStruct answer;
+    };
+
+    struct responsePlantilla{
+        long server_error;
+        sequence <JugadorStruct> answer;
+    }
+
+    struct responseRepertorio{
+        long server_error;
+        sequence <JuegoStruct> answer;
+    }
+
+    struct responseLista{
+        long server_error;
+        sListaStruct answer;
+    }
+
+    struct requestNuevo {
+        string designation;
+        long maximum;
+        string key_client;
+    };
+
+    struct requestQuita {
+       short code;
+       string key_client;
+    };
+
+    struct requestInscribe {
+       string name;
+       string alias;
+    };
+
+    struct requestPlantilla {
+       string key_client;
+    };
+
+    struct requestRepertorio {
+       octet minimum;
+    };
+
+    struct requestJuega {
+       string alias;
+       short code;
+    };
+
+    struct requestTermina {
+       string alias;
+       short code;
+    };
+
+    struct requestLista {
+       short code;
+    };
+
+    interface lsodtrp3 {
+
+        void nuevo(in requestNuevo request, out responseNuevo response);
+        void quita(in requestQuita request, out responseInt response);
+        void inscribe(in requestInscribe request, out responseInt response);
+        void plantilla(in requestPlantilla request, out responsePlantilla response);
+        void repertorio(in requestRepertorio request, out responseRepertorio response);
+        void juega(in requestJuega request, out responseInt response);
+        void termina(in requestTermina request, out responseInt response);
+        void lista(in requestLista request, out responseLista response);
+    };
+};
+#endif
