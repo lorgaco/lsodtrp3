@@ -21,7 +21,9 @@ public class ServantCORBA extends lsodtrp3POA {
         if(request.key_client.equals(key_server)) {
             sNuevo out = Method.nuevo(request.designation, request.maximum);
             responseNuevo aux_response = new responseNuevo();
+            System.out.println("code " + out.code);
             aux_response.answer.code = out.code;
+            System.out.println("error " + out.error);
             aux_response.answer.error = out.error;
             aux_response.server_error = Data.OK;
             response.value = aux_response;
