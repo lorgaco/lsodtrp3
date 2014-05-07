@@ -6,23 +6,23 @@ module lsodtr {
     struct JugadorStruct{
         string name;
         string alias;
-    }
+    };
 
     struct JuegoStruct{
         short code;
         string designation;
         long maximum;
-    }
+    };
 
     struct sNuevoStruct{
         long error;
     	short code;
-    }
+    };
 
     struct sListaStruct{
         long error;
         sequence <JugadorStruct> lista;
-    }
+    };
 
     struct responseNuevo{
 	    long server_error;
@@ -37,17 +37,17 @@ module lsodtr {
     struct responsePlantilla{
         long server_error;
         sequence <JugadorStruct> answer;
-    }
+    };
 
     struct responseRepertorio{
         long server_error;
         sequence <JuegoStruct> answer;
-    }
+    };
 
     struct responseLista{
         long server_error;
         sListaStruct answer;
-    }
+    };
 
     struct requestNuevo {
         string designation;
