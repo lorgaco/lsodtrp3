@@ -70,9 +70,7 @@ public class ServantCORBA extends lsodtrp3POA {
             ListIterator<Jugador> it = out.listIterator();
             for(int ii=0; ii<out.size(); ii++) {
                 Jugador player = it.next();
-                JugadorStruct playerStruct = new JugadorStruct();
-                playerStruct.alias = player.alias;
-                playerStruct.alias = player.name;
+                JugadorStruct playerStruct = new JugadorStruct(player.name, player.alias);
                 structArray[ii] = playerStruct;
             }
             aux_response.answer = structArray;
@@ -94,10 +92,7 @@ public class ServantCORBA extends lsodtrp3POA {
         ListIterator<Juego> it = out.listIterator();
         for(int ii=0; ii<out.size(); ii++) {
             Juego game = it.next();
-            JuegoStruct gameStruct = new JuegoStruct();
-            gameStruct.code = game.code;
-            gameStruct.designation = game.designation;
-            gameStruct.maximum = game.maximum;
+            JuegoStruct gameStruct = new JuegoStruct(game.code, game.designation, game.maximum);
             aux_response.answer[ii] = gameStruct;
         }
 
@@ -128,9 +123,7 @@ public class ServantCORBA extends lsodtrp3POA {
         ListIterator<Jugador> it = out.lista.listIterator();
         for(int ii=0; ii<out.lista.size(); ii++) {
             Jugador player = it.next();
-            JugadorStruct playerStruct = new JugadorStruct();
-            playerStruct.alias = player.alias;
-            playerStruct.alias = player.name;
+            JugadorStruct playerStruct = new JugadorStruct(player.name, player.alias);
             structArray[ii] = playerStruct;
         }
         answerStruct.lista = structArray;
