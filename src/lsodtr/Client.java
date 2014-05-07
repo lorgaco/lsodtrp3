@@ -98,7 +98,7 @@ public class Client {
                                         responseIntHolder response = new responseIntHolder();
                                         Interface.quita(request, response);
                                         int iServerError = response.value.server_error;
-                                        int resultado = response.value.server_error;
+                                        int resultado = response.value.answer;
                                         //==stub====
                                         if(resultado!=Data.OK  || iServerError!=Data.OK) {
                                             System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
@@ -133,7 +133,7 @@ public class Client {
                                         responseIntHolder response = new responseIntHolder();
                                         Interface.inscribe(request, response);
                                         int iServerError = response.value.server_error;
-                                        int resultado = response.value.server_error;
+                                        int resultado = response.value.answer;
                                         //==stub====
                                         if (resultado != Data.OK || iServerError != Data.OK) {
                                             System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
@@ -233,7 +233,7 @@ public class Client {
                                     responseIntHolder response = new responseIntHolder();
                                     Interface.juega(request, response);
                                     int iServerError = response.value.server_error;
-                                    int resultado = response.value.server_error;
+                                    int resultado = response.value.answer;
                                     //==stub====
                                     if (resultado != Data.OK || iServerError != Data.OK) {
                                         System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
@@ -259,7 +259,7 @@ public class Client {
                                     responseIntHolder response = new responseIntHolder();
                                     Interface.termina(request, response);
                                     int iServerError = response.value.server_error;
-                                    int resultado = response.value.server_error;
+                                    int resultado = response.value.answer;
                                     //==stub====
                                     if (resultado != Data.OK || iServerError != Data.OK) {
                                         System.err.println("SERVER ERROR: " + Data.ErrorToString(iServerError));
