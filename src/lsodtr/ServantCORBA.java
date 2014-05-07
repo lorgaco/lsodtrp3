@@ -21,15 +21,15 @@ public class ServantCORBA extends lsodtrp3POA {
         if(request.key_client.equals(key_server)) {
             sNuevo out = Method.nuevo(request.designation, request.maximum);
             responseNuevo aux_response = new responseNuevo();
-            System.out.println("code " + out.code);
+            aux_response.answer = new sNuevoStruct();
             aux_response.answer.code = out.code;
-            System.out.println("error " + out.error);
             aux_response.answer.error = out.error;
             aux_response.server_error = Data.OK;
             response.value = aux_response;
         }
         else {
             responseNuevo aux_response = new responseNuevo();
+            aux_response.answer = new sNuevoStruct();
             aux_response.answer.error = Data.SERVER_ERROR;
             aux_response.answer.code = -1;
             aux_response.server_error = Data.AUTENTICATION_FAILED;
@@ -115,7 +115,7 @@ public class ServantCORBA extends lsodtrp3POA {
         sLista out = Method.lista(request.code);
         responseLista aux_response = new responseLista();
         aux_response.server_error = Data.OK;
-
+        aux_response.answer = new sListaStruct();
         aux_response.answer.error = out.error;
         aux_response.answer.lista = new JugadorStruct[out.lista.size()];
         ListIterator<Jugador> it = out.lista.listIterator();
