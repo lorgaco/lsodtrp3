@@ -90,10 +90,9 @@ public class ServantCORBA extends lsodtrp3POA {
         ListIterator<Juego> it = out.listIterator();
         for(int ii=0; ii<out.size(); ii++) {
             Juego game = it.next();
-            System.out.println("code " + game.code);
-            aux_response.answer[ii].code = game.code;
-            aux_response.answer[ii].designation = game.designation;
-            aux_response.answer[ii].maximum = game.maximum;
+            aux_response.answer[ii].code = 1;//game.code;
+            aux_response.answer[ii].designation = "designation";//game.designation;
+            aux_response.answer[ii].maximum = 10;//game.maximum;
         }
 
         response.value = aux_response;
