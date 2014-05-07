@@ -86,15 +86,15 @@ public class ServantCORBA extends lsodtrp3POA {
         responseRepertorio aux_response = new responseRepertorio();
         aux_response.server_error = Data.OK;
 
-        aux_response.answer = new JuegoStruct[out.size()];
+        JuegoStruct[] games = new JuegoStruct[out.size()];
         ListIterator<Juego> it = out.listIterator();
         for(int ii=0; ii<out.size(); ii++) {
             Juego game = it.next();
-            aux_response.answer[ii].code = game.code;
-            aux_response.answer[ii].designation = game.designation;
-            aux_response.answer[ii].maximum = game.maximum;
+            games[ii].code = game.code;
+            games[ii].designation = game.designation;
+            games[ii].maximum = game.maximum;
         }
-
+        response.value.answer = games;
         response.value = aux_response;
     }
     public void juega(requestJuega request, responseIntHolder response) {

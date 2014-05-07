@@ -21,7 +21,7 @@ module lsodtr {
 
     struct sListaStruct{
         long error;
-        sequence <JugadorStruct, 256> lista;
+        sequence <JugadorStruct> lista;
     };
 
     struct responseNuevo{
@@ -36,12 +36,12 @@ module lsodtr {
 
     struct responsePlantilla{
         long server_error;
-        sequence <JugadorStruct, 256> answer;
+        sequence <JugadorStruct> answer;
     };
 
     struct responseRepertorio{
         long server_error;
-        sequence <JuegoStruct, 256> answer;
+        sequence <JuegoStruct> answer;
     };
 
     struct responseLista{
